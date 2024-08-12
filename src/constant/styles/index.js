@@ -1,8 +1,8 @@
-import { Dimensions } from 'react-native';
-import { borderColor } from '../colors';
+import { Dimensions } from "react-native";
+import { borderColor } from "../colors";
 
 export const { width: windowWidth, height: windowHeight } =
-  Dimensions.get('window');
+  Dimensions.get("window");
 
 export const defaultTouchableOpacity = 1.0;
 
@@ -11,14 +11,14 @@ export const buttonStyle = {
 
   borderRadius: 3,
   borderColor,
-  backgroundColor: 'white',
+  backgroundColor: "white",
 
-  alignItems: 'center',
-  justifyContent: 'center',
+  alignItems: "center",
+  justifyContent: "center",
 };
 
 export const bottomShadowStyle = {
-  shadowColor: 'rgba(0,0,0,0.25)',
+  shadowColor: "rgba(0,0,0,0.25)",
   shadowOffset: {
     width: 0,
     height: 2,
@@ -28,7 +28,7 @@ export const bottomShadowStyle = {
   elevation: 3,
 };
 export const topShadowStyle = {
-  shadowColor: 'rgba(0,0,0,0.25)',
+  shadowColor: "rgba(0,0,0,0.25)",
   shadowOffset: {
     width: 0,
     height: -7,
@@ -38,9 +38,9 @@ export const topShadowStyle = {
 };
 export const tagStyle = {
   borderRadius: 3,
-  backgroundColor: 'rgb(244,244,244)',
-  alignItems: 'center',
-  justifyContent: 'center',
+  backgroundColor: "rgb(244,244,244)",
+  alignItems: "center",
+  justifyContent: "center",
 };
 
 export const iconStyle = {

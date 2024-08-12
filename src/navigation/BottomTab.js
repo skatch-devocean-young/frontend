@@ -1,9 +1,10 @@
-import React from 'react';
-import {createBottomTabNavigator} from '@react-navigation/bottom-tabs';
-import HomeNavigator from './Home';
-import AlbumNavigator from './Album';
-import MypageNavigator from './Mypage';
-import CustomBottomTab from '../components/CustomBottomTab';
+import React from "react";
+import { createBottomTabNavigator } from "@react-navigation/bottom-tabs";
+import HomeNavigator from "./Home";
+import AlbumNavigator from "./Album";
+import MypageNavigator from "./Mypage";
+import CustomBottomTab from "../components/CustomBottomTab";
+import { CardStyleInterpolators } from "@react-navigation/stack";
 
 const Tab = createBottomTabNavigator();
 
@@ -18,9 +19,11 @@ const BottomTab = () => {
       screenOptions={{
         tabBarHideOnKeyboard: true,
         headerShown: false,
+        // cardStyleInterpolator: CardStyleInterpolators.forHorizontalIOS,
       }}
       initialRouteName="BottomTabHome"
-      tabBar={props => <CustomBottomTab {...props} />}>
+      tabBar={(props) => <CustomBottomTab {...props} />}
+    >
       {Object.entries({
         ...bottomTabScreens,
       }).map(([name, component]) => (
@@ -28,8 +31,8 @@ const BottomTab = () => {
           options={{
             unmountOnBlur: true,
           }}
-          listeners={({navigation}) => ({
-            blur: () => navigation.setParams({screen: undefined}),
+          listeners={({ navigation }) => ({
+            blur: () => navigation.setParams({ screen: undefined }),
           })}
           key={name}
           name={name}

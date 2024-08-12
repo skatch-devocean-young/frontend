@@ -4,31 +4,28 @@ import {
   SafeAreaView,
   useColorScheme,
   FlatList,
-} from 'react-native';
-import {useNavigation} from '@react-navigation/core';
-import Text from '../../../components/MyText';
-import {useEffect} from 'react';
-import {boldFontFamily} from '../../../constant/fonts';
-import {
-  backgroundColor,
-  blackColor,
-  borderColor,
-} from '../../../constant/colors';
-import FestaThumbItem from '../../Festa/component/FestaThumbItem';
+} from "react-native";
+import { useNavigation } from "@react-navigation/core";
+import Text from "../../../components/MyText";
+import { useEffect } from "react";
+import { boldFontFamily } from "../../../constant/fonts";
+import { backgroundColor, blackColor } from "../../../constant/colors";
+import FestaThumbItem from "../../Festa/component/FestaThumbItem";
+import FloatingTicket from "../components/FloatingTicket";
 
 const feedList = [
   {
-    name: '데보션영 밋업',
+    name: "데보션영 밋업",
   },
   {
-    name: '1',
+    name: "1",
   },
   {
-    name: '2',
+    name: "2",
   },
 ];
 export default function HomeScreen() {
-  const isDarkMode = useColorScheme() === 'dark';
+  const isDarkMode = useColorScheme() === "dark";
   const navigaiton = useNavigation();
   useEffect(() => {
     navigaiton.setOptions({
@@ -39,8 +36,9 @@ export default function HomeScreen() {
   const headerComponent = () => {
     return (
       <SafeAreaView
-        edges={['top']}
-        style={{backgroundColor: isDarkMode ? blackColor : backgroundColor}}>
+        edges={["top"]}
+        style={{ backgroundColor: isDarkMode ? blackColor : backgroundColor }}
+      >
         <View style={styles.topContainer}>
           <Text style={styles.title}>행사 피드</Text>
         </View>
@@ -48,7 +46,7 @@ export default function HomeScreen() {
     );
   };
 
-  const renderItem = ({item, index}) => {
+  const renderItem = ({ item, index }) => {
     return <FestaThumbItem item={item} />;
   };
 
@@ -63,19 +61,19 @@ export default function HomeScreen() {
             horizontal
             disableVirtualization={false}
             contentContainerStyle={styles.itemWrapper}
-            renderItem={({item, index}) => renderItem({item, index})}
+            renderItem={({ item, index }) => renderItem({ item, index })}
             onEndReachedThreshold={0.7}
             keyExtractor={(item, index) => `${item.id}-${index}`}
           />
         </View>
       ) : (
-        <View
-          style={[styles.nullContainer, type === 'recent' && {paddingTop: 32}]}>
-          <Text>
-            {type === 'feed' ? '피드가 없습니다' : '최근활동이 없습니다'}
-          </Text>
+        <View style={[styles.nullContainer]}>
+          <Text>피드가 없습니다</Text>
         </View>
       )}
+      <View style={styles.floatContainer}>
+        <FloatingTicket />
+      </View>
     </View>
   );
 }
@@ -83,12 +81,13 @@ const styles = StyleSheet.create({
   container: {
     flex: 1,
     backgroundColor: backgroundColor,
+    alignItems: "center",
   },
   topContainer: {
     paddingHorizontal: 16,
-    flexDirection: 'row',
-    alignItems: 'center',
-    justifyContent: 'space-between',
+    flexDirection: "row",
+    alignItems: "center",
+    justifyContent: "space-between",
     paddingBottom: 11,
     paddingTop: 20,
   },
@@ -101,15 +100,23 @@ const styles = StyleSheet.create({
   },
   festaContainer: {
     paddingVertical: 26,
-    // backgroundColor: 'red',
+    // backgroundColor: "red",
+    height: 300,
   },
   nullContainer: {
-    flex: 1,
-    width: '100%',
-    justifyContent: 'flex-start',
-    alignItems: 'center',
+    justifyContent: "center",
+    alignItems: "center",
+    height: 300,
   },
   itemWrapper: {
     paddingHorizontal: 24,
+  },
+  floatContainer: {
+    justifyContent: "center",
+    alignItems: "center",
+    padding: 20,
+    width: "100%",
+    position: "absolute",
+    bottom: 0,
   },
 });
