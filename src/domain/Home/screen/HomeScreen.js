@@ -4,14 +4,21 @@ import {
   SafeAreaView,
   useColorScheme,
   FlatList,
+  ScrollView,
+  TouchableWithoutFeedback,
 } from "react-native";
 import { useNavigation } from "@react-navigation/core";
 import Text from "../../../components/MyText";
 import { useEffect } from "react";
-import { boldFontFamily } from "../../../constant/fonts";
+import {
+  boldFontFamily,
+  boldFontSize,
+  extraBoldFontSize,
+} from "../../../constant/fonts";
 import { backgroundColor, blackColor } from "../../../constant/colors";
 import FestaThumbItem from "../../Festa/component/FestaThumbItem";
 import FloatingTicket from "../components/FloatingTicket";
+import FestaPreview from "../../Festa/component/FestaPreview";
 
 const feedList = [
   {
@@ -24,7 +31,27 @@ const feedList = [
     name: "2",
   },
 ];
-export default function HomeScreen() {
+
+const list = [
+  {
+    title: "Tech Day",
+    host_name: "SKT",
+    start_date: "2024-08-29",
+    end_date: "2024-08-29",
+    place_address: "서대문구 서대문로 80",
+    hashs: ["IT", "개발"],
+  },
+  {
+    title:
+      "신영문화재단 건축문화상 포스터 디자인 공모전ㅁㄴㅇㄹㅁㄴㅇㄹㅁㄴㅇㄹ",
+    host_name: "신영문화재단",
+    start_date: "2024-09-27",
+    end_date: "2024-09-27",
+    place_address: "용산구 원효로 80",
+    hashs: ["건축", "디자인"],
+  },
+];
+export default function HomeScreen({ festaList }) {
   const isDarkMode = useColorScheme() === "dark";
   const navigaiton = useNavigation();
   useEffect(() => {
@@ -47,30 +74,52 @@ export default function HomeScreen() {
   };
 
   const renderItem = ({ item, index }) => {
-    return <FestaThumbItem item={item} />;
+    return <FestaThumbItem festa={item} />;
+  };
+
+  const handleFullContent = () => {
+    navigaiton.navigate("FestaFeed");
   };
 
   return (
     <View style={styles.container}>
-      {feedList.length > 0 ? (
-        <View style={styles.festaContainer}>
-          <FlatList
-            scrollEventThrottle={16}
-            showsHorizontalScrollIndicator={false}
-            data={feedList}
-            horizontal
-            disableVirtualization={false}
-            contentContainerStyle={styles.itemWrapper}
-            renderItem={({ item, index }) => renderItem({ item, index })}
-            onEndReachedThreshold={0.7}
-            keyExtractor={(item, index) => `${item.id}-${index}`}
-          />
+      <ScrollView style={styles.scrollContainer}>
+        {list.length > 0 ? (
+          <View style={styles.festaContainer}>
+            <Text style={styles.topTitle}>요즘 뜨는 이벤트</Text>
+            <FlatList
+              scrollEventThrottle={16}
+              showsHorizontalScrollIndicator={false}
+              data={list}
+              horizontal
+              disableVirtualization={false}
+              contentContainerStyle={styles.itemWrapper}
+              renderItem={({ item, index }) => renderItem({ item, index })}
+              onEndReachedThreshold={0.7}
+              keyExtractor={(item, index) => `${item.id}-${index}`}
+            />
+          </View>
+        ) : (
+          <View style={[styles.nullContainer]}>
+            <Text>피드가 없습니다</Text>
+          </View>
+        )}
+
+        <View style={styles.feedContainer}>
+          <TouchableWithoutFeedback onPress={handleFullContent}>
+            <View style={styles.fullContainer}>
+              <Text style={styles.fullBtn}>전체보기 ></Text>
+            </View>
+          </TouchableWithoutFeedback>
+          {list.length > 0 ? (
+            list.map((item, index) => <FestaPreview festa={item} key={index} />)
+          ) : (
+            <View style={[styles.nullContainer]}>
+              <Text>피드가 없습니다</Text>
+            </View>
+          )}
         </View>
-      ) : (
-        <View style={[styles.nullContainer]}>
-          <Text>피드가 없습니다</Text>
-        </View>
-      )}
+      </ScrollView>
       <View style={styles.floatContainer}>
         <FloatingTicket />
       </View>
@@ -78,6 +127,9 @@ export default function HomeScreen() {
   );
 }
 const styles = StyleSheet.create({
+  scrollContainer: {
+    paddingBottom: 1000,
+  },
   container: {
     flex: 1,
     backgroundColor: backgroundColor,
@@ -99,14 +151,22 @@ const styles = StyleSheet.create({
     marginEnd: 8,
   },
   festaContainer: {
-    paddingVertical: 26,
+    paddingTop: 16,
+    paddingBottom: 26,
+    height: 330,
     // backgroundColor: "red",
-    height: 300,
   },
   nullContainer: {
     justifyContent: "center",
     alignItems: "center",
     height: 300,
+  },
+  topTitle: {
+    paddingHorizontal: 26,
+    marginBottom: 12,
+    fontFamily: boldFontFamily,
+    fontSize: boldFontSize,
+    color: "black",
   },
   itemWrapper: {
     paddingHorizontal: 24,
@@ -118,5 +178,19 @@ const styles = StyleSheet.create({
     width: "100%",
     position: "absolute",
     bottom: 0,
+  },
+  feedContainer: {
+    // paddingTop: 21,
+    paddingHorizontal: 20,
+    paddingBottom: 500,
+  },
+  fullContainer: {
+    display: "flex",
+    alignItems: "flex-end",
+    marginBottom: 12,
+  },
+  fullBtn: {
+    color: blackColor,
+    fontFamily: boldFontFamily,
   },
 });

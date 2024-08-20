@@ -12,9 +12,13 @@ import CancelButton from "../components/CancelButton";
 import { boldFontFamily } from "../constant/fonts";
 import TicketDetailContainer from "../domain/Ticket/container/TicketDetailContainer";
 import FestaDetailContainer from "../domain/Festa/container/FestaDetailContainer";
+import FestaFeedContainer from "../domain/Festa/container/FestaFeedContainer";
 
 const ticketDetailScreen = {
   TicketDetail: TicketDetailContainer,
+};
+const festaFeedScreen = {
+  FestaFeed: FestaFeedContainer,
 };
 const festaDetailScreen = {
   FestaDetail: FestaDetailContainer,
@@ -46,17 +50,37 @@ const RootNavigation = () => {
       initialRouteName="BottomTab"
     >
       {Object.entries({
-        ...festaDetailScreen,
+        ...festaFeedScreen,
       }).map(([name, component]) => (
         <RootStack.Screen
           key={name}
           name={name}
           component={component}
           options={{
-            title: "행사 상세",
+            title: "전체 행사 목록",
             headerShown: true,
             headerLeft: () => <BackButton />,
-            headerTitle: "행사 상세",
+            headerTitle: "전체 행사 목록",
+          }}
+        />
+      ))}
+      {Object.entries({
+        ...festaDetailScreen,
+      }).map(([name, component]) => (
+        <RootStack.Screen
+          key={name}
+          name={name}
+          component={component}
+          options={({ route }) => {
+            const { params } = route;
+            const { title } = params;
+
+            return {
+              title: "행사 상세",
+              headerShown: true,
+              headerLeft: () => <BackButton />,
+              headerTitle: title,
+            };
           }}
         />
       ))}
