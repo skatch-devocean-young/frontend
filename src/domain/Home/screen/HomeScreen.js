@@ -5,6 +5,7 @@ import {
   useColorScheme,
   FlatList,
   ScrollView,
+  TouchableWithoutFeedback,
 } from "react-native";
 import { useNavigation } from "@react-navigation/core";
 import Text from "../../../components/MyText";
@@ -17,7 +18,7 @@ import {
 import { backgroundColor, blackColor } from "../../../constant/colors";
 import FestaThumbItem from "../../Festa/component/FestaThumbItem";
 import FloatingTicket from "../components/FloatingTicket";
-import FestaPreview from "../../../components/FestaPreview";
+import FestaPreview from "../../Festa/component/FestaPreview";
 
 const feedList = [
   {
@@ -76,8 +77,8 @@ export default function HomeScreen() {
     return <FestaThumbItem item={item} />;
   };
 
-  const renderFeedItem = ({ item, index }) => {
-    return <FestaPreview item={item} />;
+  const handleFullContent = () => {
+    navigaiton.navigate("Home");
   };
 
   return (
@@ -105,6 +106,11 @@ export default function HomeScreen() {
         )}
 
         <View style={styles.feedContainer}>
+          <TouchableWithoutFeedback onPress={handleFullContent}>
+            <View style={styles.fullContainer}>
+              <Text style={styles.fullBtn}>전체보기 ></Text>
+            </View>
+          </TouchableWithoutFeedback>
           {list.length > 0 ? (
             list.map((item, index) => <FestaPreview festa={item} key={index} />)
           ) : (
@@ -177,5 +183,14 @@ const styles = StyleSheet.create({
     // paddingTop: 21,
     paddingHorizontal: 20,
     paddingBottom: 500,
+  },
+  fullContainer: {
+    display: "flex",
+    alignItems: "flex-end",
+    marginBottom: 12,
+  },
+  fullBtn: {
+    color: blackColor,
+    fontFamily: boldFontFamily,
   },
 });

@@ -1,20 +1,18 @@
 import { StyleSheet, View } from "react-native";
 import React from "react";
-import Text from "./MyText";
+import Text from "../../../components/MyText";
 import {
-  borderColor,
-  defaultColor,
   mainColor,
   secondaryColor,
   whiteColor,
-} from "../constant/colors";
+} from "../../../constant/colors";
 import {
   boldFontFamily,
   boldFontSize,
   mediumFontFamily,
-} from "../constant/fonts";
-import CustomImage from "./CustomImage";
-import AddressIcon from "../constant/images/Location";
+} from "../../../constant/fonts";
+import CustomImage from "../../../components/CustomImage";
+import AddressIcon from "../../../constant/images/Location";
 
 export default function FestaPreview({ festa }) {
   return (
