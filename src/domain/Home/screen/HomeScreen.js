@@ -51,7 +51,7 @@ const list = [
     hashs: ["건축", "디자인"],
   },
 ];
-export default function HomeScreen() {
+export default function HomeScreen({ festaList }) {
   const isDarkMode = useColorScheme() === "dark";
   const navigaiton = useNavigation();
   useEffect(() => {
