@@ -1,7 +1,7 @@
 import { StyleSheet, TouchableWithoutFeedback, View } from "react-native";
 import React from "react";
 import Text from "../../../components/MyText";
-import { whiteColor } from "../../../constant/colors";
+import { mainColor, whiteColor } from "../../../constant/colors";
 import { mediumFontFamily } from "../../../constant/fonts";
 import { useNavigation } from "@react-navigation/core";
 
@@ -24,11 +24,12 @@ export default function FestaThumbItem({ item }) {
 
 const styles = StyleSheet.create({
   container: {
-    width: 190,
-    height: 240,
+    width: 180,
+    height: 250,
     borderRadius: 20,
-    backgroundColor: whiteColor,
-    marginRight: 12,
+    backgroundColor: mainColor,
+    opacity: 0.3,
+    marginRight: 16,
     paddingHorizontal: 16,
     paddingVertical: 36,
   },

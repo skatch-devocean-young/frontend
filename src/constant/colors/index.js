@@ -20,3 +20,4 @@ export const backgroundColor = "#F5F4FB";
 export const whiteColor = "#FFFFFF";
 export const mainColor = "#4931D4";
 export const accentColor = "#CCF381";
+export const secondaryColor = "#979797";
