@@ -1,4 +1,4 @@
-import { StyleSheet, View } from "react-native";
+import { StyleSheet, TouchableWithoutFeedback, View } from "react-native";
 import React from "react";
 import Text from "../../../components/MyText";
 import {
@@ -13,33 +13,41 @@ import {
 } from "../../../constant/fonts";
 import CustomImage from "../../../components/CustomImage";
 import AddressIcon from "../../../constant/images/Location";
+import { useNavigation } from "@react-navigation/core";
 
 export default function FestaPreview({ festa }) {
+  const navigation = useNavigation();
+
+  const handleNavigate = () => {
+    navigation.navigate("FestaDetail", { item: festa, title: festa.title });
+  };
   return (
-    <View style={styles.container}>
-      <View style={styles.infoContainer}>
-        <Text style={styles.date}>{festa.start_date}</Text>
-        <Text numberOfLines={1} style={styles.title}>
-          {festa.title}
-        </Text>
-        <Text style={styles.hostName}>{festa.host_name}</Text>
-        <View style={styles.addressContainer}>
-          <CustomImage source={AddressIcon} style={styles.addressIcon} />
-          <Text style={styles.addressText}>{festa.place_address}</Text>
+    <TouchableWithoutFeedback onPress={handleNavigate}>
+      <View style={styles.container}>
+        <View style={styles.infoContainer}>
+          <Text style={styles.date}>{festa.start_date}</Text>
+          <Text numberOfLines={1} style={styles.title}>
+            {festa.title}
+          </Text>
+          <Text style={styles.hostName}>{festa.host_name}</Text>
+          <View style={styles.addressContainer}>
+            <CustomImage source={AddressIcon} style={styles.addressIcon} />
+            <Text style={styles.addressText}>{festa.place_address}</Text>
+          </View>
+          <View style={styles.hashContainer}>
+            {festa.hashs.length > 0 &&
+              festa.hashs.map((item, index) => (
+                <View style={styles.hashItem} key={index}>
+                  <Text style={styles.hashText}>#{item}</Text>
+                </View>
+              ))}
+          </View>
         </View>
-        <View style={styles.hashContainer}>
-          {festa.hashs.length > 0 &&
-            festa.hashs.map((item, index) => (
-              <View style={styles.hashItem} key={index}>
-                <Text style={styles.hashText}>#{item}</Text>
-              </View>
-            ))}
+        <View style={styles.imgContainer}>
+          {/* <CustomImage source={img} style={styles.posterImg} /> */}
         </View>
       </View>
-      <View style={styles.imgContainer}>
-        {/* <CustomImage source={img} style={styles.posterImg} /> */}
-      </View>
-    </View>
+    </TouchableWithoutFeedback>
   );
 }
 
@@ -47,7 +55,7 @@ const styles = StyleSheet.create({
   container: {
     height: 150,
     backgroundColor: whiteColor,
-    marginBottom: 26,
+    marginBottom: 20,
     borderRadius: 20,
 
     color: secondaryColor,

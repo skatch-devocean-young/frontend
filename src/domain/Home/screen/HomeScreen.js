@@ -74,23 +74,23 @@ export default function HomeScreen() {
   };
 
   const renderItem = ({ item, index }) => {
-    return <FestaThumbItem item={item} />;
+    return <FestaThumbItem festa={item} />;
   };
 
   const handleFullContent = () => {
-    navigaiton.navigate("Home");
+    navigaiton.navigate("FestaFeed");
   };
 
   return (
     <View style={styles.container}>
       <ScrollView style={styles.scrollContainer}>
-        {feedList.length > 0 ? (
+        {list.length > 0 ? (
           <View style={styles.festaContainer}>
             <Text style={styles.topTitle}>요즘 뜨는 이벤트</Text>
             <FlatList
               scrollEventThrottle={16}
               showsHorizontalScrollIndicator={false}
-              data={feedList}
+              data={list}
               horizontal
               disableVirtualization={false}
               contentContainerStyle={styles.itemWrapper}

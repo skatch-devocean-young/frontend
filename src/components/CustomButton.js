@@ -5,7 +5,7 @@ import {
   View,
 } from "react-native";
 import React from "react";
-import { buttonColor } from "../constant/colors";
+import { buttonColor, mainColor } from "../constant/colors";
 import { boldFontFamily } from "../constant/fonts";
 import {
   bottomShadowStyle,
@@ -48,18 +48,21 @@ const styles = StyleSheet.create({
     paddingBottom: Platform.OS === "ios" ? 44 : 14.5,
     backgroundColor: "white",
     paddingTop: 14.5,
-    paddingHorizontal: 16,
+    paddingHorizontal: 20,
+
     // justifyContent: 'flex-start',
     ...topShadowStyle,
-    // position: 'absolute',
-    // bottom: 0,
+
+    position: "absolute",
+    bottom: 0,
   },
   wrapper: {
-    backgroundColor: buttonColor,
-    borderRadius: 8,
+    backgroundColor: mainColor,
+    borderRadius: 20,
     paddingVertical: 13,
     alignItems: "center",
     justifyContent: "center",
+    height: 60,
   },
   text: {
     fontFamily: boldFontFamily,
