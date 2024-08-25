@@ -1,3 +1,3 @@
-import PhotoAlbum from "./PhotoAlbum.png";
+import PhotoAlbumIcon from "./PhotoAlbum.png";
 
-export default PhotoAlbum;
+export default PhotoAlbumIcon;

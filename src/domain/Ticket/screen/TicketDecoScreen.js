@@ -1,21 +1,30 @@
 import { StyleSheet, TouchableWithoutFeedback, View } from "react-native";
 import React, { useState } from "react";
 import {
+  accentColor,
   backgroundColor,
+  blackColor,
   mainColor,
   secondaryColor,
   whiteColor,
 } from "../../../constant/colors";
 import Text from "../../../components/MyText";
-import PhotoAlbum from "../../../constant/images/PhotoAlbum";
+
 import CustomImage from "../../../components/CustomImage";
 import TextIcon from "../../../constant/images/Text";
-import { boldFontFamily } from "../../../constant/fonts";
+import {
+  boldFontFamily,
+  lightFontFamily,
+  mediumFontFamily,
+} from "../../../constant/fonts";
 import CustomButton from "../../../components/CustomButton";
 import { useNavigation } from "@react-navigation/core";
 import CameraSelectModal from "../../../components/CameraSelectModal";
 import ImageCropPicker from "react-native-image-crop-picker";
-import { BeforePhoto } from "../../../constant/images/Sample";
+import { AfterPhoto, BeforePhoto } from "../../../constant/images/Sample";
+import { CloseIcon, CloseColorIcon } from "../../../constant/images/Close";
+import PhotoAlbumIcon from "../../../constant/images/PhotoAlbum";
+import EffectIcon from "../../../constant/images/AiEffect";
 
 export default function TicketDecoScreen() {
   const navigaiton = useNavigation();
@@ -43,7 +52,8 @@ export default function TicketDecoScreen() {
   };
 
   const [isVisible, setIsVisible] = useState(false);
-  //   const [isOrigin, setIsOrigin] = useState(true)
+  const [isDecoVisible, setIsDecoVisible] = useState(true);
+  const [isOrigin, setIsOrigin] = useState(true);
 
   const openCamera = () => {
     ImageCropPicker.openCamera(
@@ -88,10 +98,7 @@ export default function TicketDecoScreen() {
 
   function OptionButton({ img, text, style, onPress }) {
     return (
-      <TouchableWithoutFeedback
-        onPress={onPress}
-        style={{ backgroundColor: "red" }}
-      >
+      <TouchableWithoutFeedback onPress={onPress}>
         <View style={styles.btnItem}>
           <CustomImage source={img} style={style} />
           <Text style={styles.btnText}>{text}</Text>
@@ -100,24 +107,84 @@ export default function TicketDecoScreen() {
     );
   }
 
+  function PhotoDecoModal() {
+    return (
+      <View style={styles.decoContainer}>
+        <TouchableWithoutFeedback onPress={handleDecoCloseButton}>
+          <View style={styles.closeBtn}>
+            <CustomImage source={CloseIcon} style={{ width: 17, height: 22 }} />
+          </View>
+        </TouchableWithoutFeedback>
+        <View style={styles.decoBtnContainer}>
+          <TouchableWithoutFeedback onPress={handleOriginButton}>
+            <View style={styles.decoBtn}>
+              <View style={styles.decoBtnItem}>
+                <CustomImage
+                  source={CloseColorIcon}
+                  style={{ width: 18, height: 18 }}
+                />
+              </View>
+              <Text style={styles.decoBtnText}>{"원본"}</Text>
+            </View>
+          </TouchableWithoutFeedback>
+
+          <TouchableWithoutFeedback onPress={handleEffectButton}>
+            <View style={styles.decoBtn}>
+              <View style={styles.decoBtnItem}>
+                <CustomImage
+                  source={EffectIcon}
+                  style={{ width: 26, height: 22 }}
+                />
+              </View>
+              <Text style={styles.decoBtnText}>{"생성형 AI"}</Text>
+            </View>
+          </TouchableWithoutFeedback>
+        </View>
+      </View>
+    );
+  }
+
+  const handleInitButton = () => {
+    setIsOrigin(true);
+    setIsVisible(true);
+    setIsDecoVisible(true);
+  };
+  const handleDecoCloseButton = () => {
+    setIsDecoVisible(false);
+  };
+
+  const handleOriginButton = () => {
+    setIsOrigin(true);
+  };
+
+  const handleEffectButton = () => {
+    setIsOrigin(false);
+  };
+
   const handleSaveButton = () => {
     navigaiton.navigate("");
   };
+
   return (
     <View style={styles.container}>
       <View style={styles.ticketContainer}>
         <View style={styles.ticket}>
           <View style={styles.imgContainer}>
-            <CustomImage source={BeforePhoto} style={styles.img} />
+            {isVisible &&
+              (isOrigin ? (
+                <CustomImage source={BeforePhoto} style={styles.img} />
+              ) : (
+                <CustomImage source={AfterPhoto} style={styles.img} />
+              ))}
           </View>
         </View>
       </View>
       <View style={styles.btnContainer}>
         <OptionButton
-          img={PhotoAlbum}
+          img={PhotoAlbumIcon}
           text={"사진 앨범"}
           style={{ width: 32, height: 24 }}
-          onPress={openModal}
+          onPress={handleInitButton}
         />
 
         <OptionButton
@@ -127,13 +194,13 @@ export default function TicketDecoScreen() {
         />
       </View>
       <CustomButton title={"저장"} handlePress={handleSaveButton} />
-      <CameraSelectModal
+      {/* <CameraSelectModal
         isVisible={isVisible}
         openCamera={openCamera}
         openImageLibrary={openImageLibrary}
         cancelModal={cancelModal}
-      />
-      {/* <PhotoDecoModal isVisible={isDecoVisible} isOrigin={isOrigin} /> */}
+      /> */}
+      {isDecoVisible && <PhotoDecoModal />}
     </View>
   );
 }
@@ -192,5 +259,42 @@ const styles = StyleSheet.create({
     fontFamily: boldFontFamily,
     fontSize: 12,
     color: mainColor,
+  },
+  decoContainer: {
+    position: "absolute",
+    bottom: 0,
+    backgroundColor: whiteColor,
+    width: "100%",
+    height: 270,
+    alignItems: "flex-end",
+  },
+  closeBtn: {
+    margin: 10,
+  },
+  decoBtnContainer: {
+    display: "flex",
+    flexDirection: "row",
+    width: "100%",
+    marginTop: 20,
+    height: 120,
+    justifyContent: "space-evenly",
+  },
+  decoBtn: {
+    justifyContent: "center",
+    alignItems: "center",
+  },
+  decoBtnItem: {
+    width: 60,
+    height: 60,
+    backgroundColor: accentColor,
+    borderRadius: 50,
+    justifyContent: "center",
+    alignItems: "center",
+    marginBottom: 8,
+  },
+  decoBtnText: {
+    fontSize: 12,
+    fontFamily: lightFontFamily,
+    color: blackColor,
   },
 });
