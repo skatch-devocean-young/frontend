@@ -78,7 +78,8 @@ export default function HomeScreen({ festaList }) {
   };
 
   const handleFullContent = () => {
-    navigaiton.navigate("FestaFeed");
+    // navigaiton.navigate("FestaFeed");
+    navigaiton.navigate("TicketDeco");
   };
 
   return (

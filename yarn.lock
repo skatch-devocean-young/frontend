@@ -5839,6 +5839,11 @@ react-native-gesture-handler@latest:
     invariant "^2.2.4"
     prop-types "^15.7.2"
 
+react-native-image-crop-picker@^0.41.2:
+  version "0.41.2"
+  resolved "https://registry.yarnpkg.com/react-native-image-crop-picker/-/react-native-image-crop-picker-0.41.2.tgz#824fa8fee8391fbb3e0b5ae2973221a2dff0cafb"
+  integrity sha512-GcDu/adXU/1y/MrxsbOfqcGRGWC2pTttt5VGy/jyRJ6GXfoC29fTQf8SG5kGtc5schSR6K+mKYO4uW6eJPljlQ==
+
 react-native-loading-spinner-overlay@^3.0.1:
   version "3.0.1"
   resolved "https://registry.yarnpkg.com/react-native-loading-spinner-overlay/-/react-native-loading-spinner-overlay-3.0.1.tgz#092481b8cce157d3af5ef942f845ad981f96bd36"
