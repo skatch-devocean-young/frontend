@@ -1,12 +1,12 @@
-import React, { forwardRef } from 'react';
-import { Platform, StyleSheet, TextInput } from 'react-native';
-import { defaultColor, descriptionColorVer2 } from '../constant/colors';
-import { defaultFontFamily } from '../constant/fonts';
+import React, { forwardRef } from "react";
+import { Platform, StyleSheet, TextInput } from "react-native";
+import { defaultColor, descriptionColorVer2 } from "../constant/colors";
+import { defaultFontFamily } from "../constant/fonts";
 
 const MyTextInput = forwardRef((props, ref) => {
   const {
     style: textInputStyle = {},
-    placeholder = '직접입력:',
+    placeholder = "직접입력:",
     ...restProps
   } = props;
   return (
@@ -31,8 +31,8 @@ const styles = StyleSheet.create({
     paddingBottom: 17.5,
     color: defaultColor,
     fontSize: 16,
-    borderBottomColor: 'rgb(232,232,232)',
+    borderBottomColor: "rgb(232,232,232)",
     borderBottomWidth: 1,
-    width: '100%',
+    width: "100%",
   },
 });

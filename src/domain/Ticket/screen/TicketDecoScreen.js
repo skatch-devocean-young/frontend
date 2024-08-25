@@ -1,5 +1,10 @@
-import { StyleSheet, TouchableWithoutFeedback, View } from "react-native";
-import React, { useState } from "react";
+import {
+  StyleSheet,
+  TextInput,
+  TouchableWithoutFeedback,
+  View,
+} from "react-native";
+import React, { useRef, useState } from "react";
 import {
   accentColor,
   backgroundColor,
@@ -25,6 +30,9 @@ import { AfterPhoto, BeforePhoto } from "../../../constant/images/Sample";
 import { CloseIcon, CloseColorIcon } from "../../../constant/images/Close";
 import PhotoAlbumIcon from "../../../constant/images/PhotoAlbum";
 import EffectIcon from "../../../constant/images/AiEffect";
+import TextArrangeIcon from "../../../constant/images/Arrange";
+import ColorIcon from "../../../constant/images/Color";
+import MyTextInput from "../../../components/MyTextInput";
 
 export default function TicketDecoScreen() {
   const navigaiton = useNavigation();
@@ -52,8 +60,15 @@ export default function TicketDecoScreen() {
   };
 
   const [isVisible, setIsVisible] = useState(false);
-  const [isDecoVisible, setIsDecoVisible] = useState(true);
+  const [isDecoVisible, setIsDecoVisible] = useState(false);
   const [isOrigin, setIsOrigin] = useState(true);
+  const [isTextVisible, setIsTextVisible] = useState(false);
+  const [isArrangeVisible, setIsArrangeVisible] = useState(false);
+  const [isColorVisible, setIsColorVisible] = useState(false);
+  const [textInputFocus, setTextInputFocus] = useState(false);
+  const [comment, setComment] = useState("");
+
+  const textInputRef = useRef();
 
   const openCamera = () => {
     ImageCropPicker.openCamera(
@@ -144,6 +159,48 @@ export default function TicketDecoScreen() {
     );
   }
 
+  function TextDecoModal() {
+    return (
+      <View style={styles.decoContainer}>
+        <TouchableWithoutFeedback onPress={handleTextCloseButton}>
+          <View style={styles.closeBtn}>
+            <CustomImage source={CloseIcon} style={{ width: 17, height: 22 }} />
+          </View>
+        </TouchableWithoutFeedback>
+        {/* <View style={styles.arrangeContainer}>
+            <TouchableWithoutFeedback onPress={setArrangeType("left")}>
+                <View style={}
+            </TouchableWithoutFeedback>
+        </View> */}
+        <View style={styles.decoBtnContainer}>
+          <TouchableWithoutFeedback onPress={handleArrangeButton}>
+            <View style={styles.decoBtn}>
+              <View style={styles.decoBtnItem}>
+                <CustomImage
+                  source={TextArrangeIcon}
+                  style={{ width: 18, height: 18 }}
+                />
+              </View>
+              <Text style={styles.decoBtnText}>{"정렬"}</Text>
+            </View>
+          </TouchableWithoutFeedback>
+
+          <TouchableWithoutFeedback onPress={handleColorButton}>
+            <View style={styles.decoBtn}>
+              <View style={styles.decoBtnItem}>
+                <CustomImage
+                  source={ColorIcon}
+                  style={{ width: 26, height: 22 }}
+                />
+              </View>
+              <Text style={styles.decoBtnText}>{"글꼴 색상"}</Text>
+            </View>
+          </TouchableWithoutFeedback>
+        </View>
+      </View>
+    );
+  }
+
   const handleInitButton = () => {
     setIsOrigin(true);
     setIsVisible(true);
@@ -161,8 +218,25 @@ export default function TicketDecoScreen() {
     setIsOrigin(false);
   };
 
+  const handleTextButton = () => {
+    // setIsTextVisible(true);
+    textInputRef.current.focus();
+  };
+
+  const handleTextCloseButton = () => {
+    setIsTextVisible(false);
+  };
+
+  const handleArrangeButton = () => {
+    setIsArrangeVisible(true);
+  };
+
+  const handleColorButton = () => {
+    setIsColorVisible(true);
+  };
+
   const handleSaveButton = () => {
-    navigaiton.navigate("");
+    navigaiton.navigate("Home");
   };
 
   return (
@@ -176,6 +250,9 @@ export default function TicketDecoScreen() {
               ) : (
                 <CustomImage source={AfterPhoto} style={styles.img} />
               ))}
+          </View>
+          <View style={styles.commentContainer}>
+            <Text style={styles.comment}>{comment}</Text>
           </View>
         </View>
       </View>
@@ -191,6 +268,7 @@ export default function TicketDecoScreen() {
           img={TextIcon}
           text={"텍스트"}
           style={{ width: 37, height: 24 }}
+          onPress={handleTextButton}
         />
       </View>
       <CustomButton title={"저장"} handlePress={handleSaveButton} />
@@ -201,6 +279,17 @@ export default function TicketDecoScreen() {
         cancelModal={cancelModal}
       /> */}
       {isDecoVisible && <PhotoDecoModal />}
+      {isTextVisible && <TextDecoModal />}
+      <TextInput
+        ref={textInputRef}
+        style={{ opacity: 0, width: 0, height: 0 }}
+        onChangeText={(text) => {
+          setComment(text);
+        }}
+        onSubmitEditing={() => {
+          setIsTextVisible(true);
+        }}
+      />
     </View>
   );
 }
@@ -213,11 +302,14 @@ const styles = StyleSheet.create({
   ticketContainer: {
     paddingTop: 40,
     paddingHorizontal: 45,
-    paddingBottom: 27,
   },
   ticket: {
     backgroundColor: "rgba(217,217,217,0.57)",
     borderRadius: 20,
+    paddingHorizontal: 24,
+    paddingBottom: 70,
+    marginBottom: 27,
+    height: 420,
   },
   imgContainer: {
     width: 252,
@@ -225,13 +317,18 @@ const styles = StyleSheet.create({
     backgroundColor: secondaryColor,
     alignItems: "center",
     justifyContent: "center",
-    margin: 24,
-    marginBottom: 80,
+    marginTop: 24,
+    marginBottom: 12,
   },
   img: {
     transform: [{ rotate: "90deg" }],
     width: 317,
     height: 252,
+  },
+  commentContainer: {},
+  comment: {
+    fontFamily: mediumFontFamily,
+    color: "rgba(17,17,17,0.67)",
   },
   btnContainer: {
     display: "flex",
