@@ -4,11 +4,13 @@ import {
   TouchableWithoutFeedback,
   View,
 } from "react-native";
+import Spinner from "react-native-loading-spinner-overlay";
 import React, { useRef, useState } from "react";
 import {
   accentColor,
   backgroundColor,
   blackColor,
+  defaultColor,
   mainColor,
   secondaryColor,
   whiteColor,
@@ -66,7 +68,8 @@ export default function TicketDecoScreen() {
   const [isArrangeVisible, setIsArrangeVisible] = useState(false);
   const [isColorVisible, setIsColorVisible] = useState(false);
   const [textInputFocus, setTextInputFocus] = useState(false);
-  const [comment, setComment] = useState("");
+  const [comment, setComment] = useState("코멘트를 입력해주세요.");
+  const [isLoading, setIsLoading] = useState(false);
 
   const textInputRef = useRef();
 
@@ -211,11 +214,27 @@ export default function TicketDecoScreen() {
   };
 
   const handleOriginButton = () => {
-    setIsOrigin(true);
+    setIsLoading(true);
+    let timer = setTimeout(() => {
+      setIsLoading(false);
+      setIsOrigin(true);
+    }, 1000);
+
+    return () => {
+      clearTimeout(timer);
+    };
   };
 
-  const handleEffectButton = () => {
-    setIsOrigin(false);
+  const handleEffectButton = async () => {
+    setIsLoading(true);
+    let timer = setTimeout(() => {
+      setIsLoading(false);
+      setIsOrigin(false);
+    }, 1000);
+
+    return () => {
+      clearTimeout(timer);
+    };
   };
 
   const handleTextButton = () => {
@@ -236,7 +255,7 @@ export default function TicketDecoScreen() {
   };
 
   const handleSaveButton = () => {
-    navigaiton.navigate("Home");
+    navigaiton.navigate("TicketSaveComplete");
   };
 
   return (
@@ -250,6 +269,19 @@ export default function TicketDecoScreen() {
               ) : (
                 <CustomImage source={AfterPhoto} style={styles.img} />
               ))}
+            {isLoading && (
+              <Spinner
+                visible={isLoading}
+                textContent={isOrigin ? "효과 적용중" : "효과 해제중"}
+                textStyle={{
+                  fontFamily: mediumFontFamily,
+                  fontSize: 16,
+                  color: whiteColor,
+                  opacity: 0.7,
+                  marginTop: -50,
+                }}
+              />
+            )}
           </View>
           <View style={styles.commentContainer}>
             <Text style={styles.comment}>{comment}</Text>
