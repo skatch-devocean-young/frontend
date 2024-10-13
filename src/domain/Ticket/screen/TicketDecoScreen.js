@@ -424,6 +424,5 @@ const styles = StyleSheet.create({
   decoBtnText: {
     fontSize: 12,
     fontFamily: lightFontFamily,
-    color: blackColor,
   },
 });

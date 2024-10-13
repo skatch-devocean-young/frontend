@@ -10,6 +10,7 @@ export const thinFontFamily = "SpoqaHanSansNeo-Thin";
 
 export const montBoldFontFamily = "Montserrat-Bold";
 
+export const smallFontSize = 12;
 export const defaultFontSize = 14;
 export const boldFontSize = 16;
 export const extraBoldFontSize = 20;

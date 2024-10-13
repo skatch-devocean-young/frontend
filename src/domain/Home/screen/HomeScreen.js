@@ -150,7 +150,6 @@ const styles = StyleSheet.create({
     fontFamily: boldFontFamily,
     fontSize: 20,
     lineHeight: 31,
-    color: blackColor,
     marginEnd: 8,
   },
   festaContainer: {
@@ -169,7 +168,6 @@ const styles = StyleSheet.create({
     marginBottom: 12,
     fontFamily: boldFontFamily,
     fontSize: boldFontSize,
-    color: "black",
   },
   itemWrapper: {
     paddingHorizontal: 24,
