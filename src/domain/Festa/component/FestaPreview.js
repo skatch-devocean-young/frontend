@@ -25,7 +25,7 @@ export default function FestaPreview({ festa }) {
     <TouchableWithoutFeedback onPress={handleNavigate}>
       <View style={styles.container}>
         <View style={styles.infoContainer}>
-          <Text style={styles.date}>{festa.start_date}</Text>
+          <Text style={styles.date}>{festa.date}</Text>
           <Text numberOfLines={1} style={styles.title}>
             {festa.title}
           </Text>
@@ -44,7 +44,7 @@ export default function FestaPreview({ festa }) {
           </View>
         </View>
         <View style={styles.imgContainer}>
-          {/* <CustomImage source={img} style={styles.posterImg} /> */}
+          <CustomImage source={{ uri: festa.image }} style={styles.posterImg} />
         </View>
       </View>
     </TouchableWithoutFeedback>
@@ -72,6 +72,10 @@ const styles = StyleSheet.create({
     width: 107,
     height: 150,
     backgroundColor: mainColor,
+    borderTopRightRadius: 20,
+    borderBottomRightRadius: 20,
+  },
+  posterImg: {
     borderTopRightRadius: 20,
     borderBottomRightRadius: 20,
   },

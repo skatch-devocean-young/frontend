@@ -4,6 +4,7 @@ import Text from "../../../components/MyText";
 import { mainColor, whiteColor } from "../../../constant/colors";
 import { mediumFontFamily } from "../../../constant/fonts";
 import { useNavigation } from "@react-navigation/core";
+import CustomImage from "../../../components/CustomImage";
 
 export default function FestaThumbItem({ festa }) {
   const navigaiton = useNavigation();
@@ -16,6 +17,7 @@ export default function FestaThumbItem({ festa }) {
   return (
     <TouchableWithoutFeedback onPress={handlePress}>
       <View style={styles.container}>
+        <CustomImage source={{ uri: festa.image }} style={styles.img} />
         <Text style={styles.title}>{festa.name}</Text>
       </View>
     </TouchableWithoutFeedback>
@@ -28,12 +30,17 @@ const styles = StyleSheet.create({
     height: 250,
     borderRadius: 20,
     backgroundColor: mainColor,
-    opacity: 0.3,
     marginRight: 16,
     paddingHorizontal: 16,
     paddingVertical: 36,
   },
   title: {
     fontFamily: mediumFontFamily,
+  },
+  img: {
+    width: 180,
+    height: 250,
+    borderRadius: 20,
+    position: "absolute",
   },
 });

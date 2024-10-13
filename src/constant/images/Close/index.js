@@ -1,3 +1,4 @@
-import CloseIcon from './Close.png'
+import CloseIcon from "./Close.png";
+import CloseColorIcon from "./CloseColored.png";
 
-export default CloseIcon
+export { CloseIcon, CloseColorIcon };

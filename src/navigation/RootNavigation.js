@@ -13,15 +13,27 @@ import { boldFontFamily } from "../constant/fonts";
 import TicketDetailContainer from "../domain/Ticket/container/TicketDetailContainer";
 import FestaDetailContainer from "../domain/Festa/container/FestaDetailContainer";
 import FestaFeedContainer from "../domain/Festa/container/FestaFeedContainer";
+import TicketDecoContainer from "../domain/Ticket/container/TicketDecoContainer";
+import SaveCompleteScreen from "../domain/Ticket/screen/SaveCompleteScreen";
+import CompleteScreen from "../components/CompleteScreen";
 
-const ticketDetailScreen = {
-  TicketDetail: TicketDetailContainer,
-};
 const festaFeedScreen = {
   FestaFeed: FestaFeedContainer,
 };
 const festaDetailScreen = {
   FestaDetail: FestaDetailContainer,
+};
+const ticketDetailScreen = {
+  TicketDetail: TicketDetailContainer,
+};
+const ticketDecoScreen = {
+  TicketDeco: TicketDecoContainer,
+};
+const saveCompleteScreen = {
+  TicketSaveComplete: SaveCompleteScreen,
+};
+const completeScreen = {
+  Complete: CompleteScreen,
 };
 
 const RootStack = createStackNavigator();
@@ -96,6 +108,51 @@ const RootNavigation = () => {
             headerShown: true,
             headerLeft: () => <BackButton />,
             headerTitle: "티켓 상세",
+          }}
+        />
+      ))}
+      {Object.entries({
+        ...ticketDecoScreen,
+      }).map(([name, component]) => (
+        <RootStack.Screen
+          key={name}
+          name={name}
+          component={component}
+          options={{
+            title: "티켓 꾸미기",
+            headerShown: true,
+            headerLeft: () => <BackButton />,
+            headerTitle: "티켓 꾸미기",
+          }}
+        />
+      ))}
+      {Object.entries({
+        ...saveCompleteScreen,
+      }).map(([name, component]) => (
+        <RootStack.Screen
+          key={name}
+          name={name}
+          component={component}
+          options={{
+            title: "티켓 꾸미기 저장 완료",
+            headerShown: false,
+            headerLeft: () => <BackButton />,
+            headerTitle: "티켓 꾸미기 저장 완료",
+          }}
+        />
+      ))}
+      {Object.entries({
+        ...completeScreen,
+      }).map(([name, component]) => (
+        <RootStack.Screen
+          key={name}
+          name={name}
+          component={component}
+          options={{
+            title: "완료",
+            headerShown: false,
+            headerLeft: () => <BackButton />,
+            headerTitle: "완료",
           }}
         />
       ))}

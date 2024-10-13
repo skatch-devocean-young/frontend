@@ -1,5 +1,5 @@
 import { ScrollView, StyleSheet, Text, View } from "react-native";
-import React from "react";
+import React, { useState } from "react";
 import {
   backgroundColor,
   borderColor,
@@ -7,23 +7,46 @@ import {
   mainColor,
 } from "../../../constant/colors";
 import Devider from "../../../components/Devider";
-import { boldFontFamily } from "../../../constant/fonts";
+import {
+  boldFontFamily,
+  defaultFontFamily,
+  defaultFontSize,
+} from "../../../constant/fonts";
 import CustomButton from "../../../components/CustomButton";
+import CustomImage from "../../../components/CustomImage";
+import { useNavigation } from "@react-navigation/core";
+import Spinner from "react-native-loading-spinner-overlay";
 
 export default function FestaDetailScreen({ item }) {
+  const [isLoading, setIsLoading] = useState(false);
+  const navigation = useNavigation();
+  const handlePress = () => {
+    setIsLoading(true);
+    setTimeout(() => {
+      navigation.navigate("Complete", {
+        content: `참여신청을\n 완료하였습니다.`,
+      });
+      setIsLoading(false);
+    }, 250);
+  };
+
   return (
     <>
       <ScrollView style={styles.scrollContainer}>
         <View style={styles.container}>
           <View style={styles.posterContainer}>
-            <View style={styles.posterItem} />
+            {/* <View style={styles.posterItem} /> */}
+            <CustomImage
+              source={{ uri: item.image }}
+              style={styles.posterItem}
+            />
           </View>
           <Devider />
 
           <View style={styles.infoContainer}>
             <View style={styles.infoItem}>
               <Text style={styles.contentTitle}>일시</Text>
-              <Text style={styles.contentText}>{item.start_date}</Text>
+              <Text style={styles.contentText}>{item.date}</Text>
             </View>
             <View style={styles.infoItem}>
               <Text style={styles.contentTitle}>주최</Text>
@@ -31,7 +54,7 @@ export default function FestaDetailScreen({ item }) {
             </View>
             <View style={styles.infoItem}>
               <Text style={styles.contentTitle}>인원</Text>
-              <Text style={styles.contentText}>{item.start_date}</Text>
+              <Text style={styles.contentText}>{item.capacity}</Text>
             </View>
             <View style={styles.infoItem}>
               <Text style={styles.contentTitle}>장소</Text>
@@ -39,22 +62,23 @@ export default function FestaDetailScreen({ item }) {
             </View>
             <View style={styles.infoItem}>
               <Text style={styles.contentTitle}>가격</Text>
-              <Text style={styles.contentText}>{item.start_date}</Text>
+              <Text style={styles.contentText}>{item.price}</Text>
             </View>
             <View style={styles.infoItem}>
               <Text style={styles.contentTitle}>신청일자</Text>
-              <Text style={styles.contentText}>{item.start_date}</Text>
+              <Text style={styles.contentText}>{item.end_date}</Text>
             </View>
           </View>
 
           <Devider />
 
           <View style={styles.detailContainer}>
-            <Text> 상세정보</Text>
+            <Text style={styles.description}>{item.description}</Text>
           </View>
+          {isLoading && <Spinner visible={isLoading} />}
         </View>
       </ScrollView>
-      <CustomButton title={"참여하기"} />
+      <CustomButton title={"참여하기"} handlePress={handlePress} />
     </>
   );
 }
@@ -93,6 +117,7 @@ const styles = StyleSheet.create({
     marginRight: 12,
     fontFamily: boldFontFamily,
     lineHeight: 30,
+    width: 70,
   },
   contentText: {
     lineHeight: 30,
@@ -100,5 +125,13 @@ const styles = StyleSheet.create({
   detailContainer: {
     justifyContent: "center",
     alignItems: "center",
+    padding: 20,
+    paddingHorizontal: 24,
+  },
+  description: {
+    textAlign: "left",
+    fontSize: defaultFontSize,
+    fontFamily: defaultFontFamily,
+    lineHeight: 22,
   },
 });
