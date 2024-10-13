@@ -51,7 +51,7 @@ const list = [
     hashs: ["건축", "디자인"],
   },
 ];
-export default function HomeScreen({ festaList }) {
+export default function HomeScreen({ festaList, topList }) {
   const isDarkMode = useColorScheme() === "dark";
   const navigaiton = useNavigation();
   useEffect(() => {
@@ -78,20 +78,20 @@ export default function HomeScreen({ festaList }) {
   };
 
   const handleFullContent = () => {
-    // navigaiton.navigate("FestaFeed");
-    navigaiton.navigate("TicketDeco");
+    navigaiton.navigate("FestaFeed");
+    // navigaiton.navigate("TicketDeco");
   };
 
   return (
     <View style={styles.container}>
       <ScrollView style={styles.scrollContainer}>
-        {list.length > 0 ? (
+        {topList.length > 0 ? (
           <View style={styles.festaContainer}>
             <Text style={styles.topTitle}>요즘 뜨는 이벤트</Text>
             <FlatList
               scrollEventThrottle={16}
               showsHorizontalScrollIndicator={false}
-              data={list}
+              data={topList}
               horizontal
               disableVirtualization={false}
               contentContainerStyle={styles.itemWrapper}
@@ -112,8 +112,10 @@ export default function HomeScreen({ festaList }) {
               <Text style={styles.fullBtn}>전체보기 ></Text>
             </View>
           </TouchableWithoutFeedback>
-          {list.length > 0 ? (
-            list.map((item, index) => <FestaPreview festa={item} key={index} />)
+          {festaList.length > 0 ? (
+            festaList.map((item, index) => (
+              <FestaPreview festa={item} key={index} />
+            ))
           ) : (
             <View style={[styles.nullContainer]}>
               <Text>피드가 없습니다</Text>

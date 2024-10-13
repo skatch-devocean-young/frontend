@@ -14,6 +14,8 @@ import TicketDetailContainer from "../domain/Ticket/container/TicketDetailContai
 import FestaDetailContainer from "../domain/Festa/container/FestaDetailContainer";
 import FestaFeedContainer from "../domain/Festa/container/FestaFeedContainer";
 import TicketDecoContainer from "../domain/Ticket/container/TicketDecoContainer";
+import SaveCompleteScreen from "../domain/Ticket/screen/SaveCompleteScreen";
+import CompleteScreen from "../components/CompleteScreen";
 
 const festaFeedScreen = {
   FestaFeed: FestaFeedContainer,
@@ -26,6 +28,12 @@ const ticketDetailScreen = {
 };
 const ticketDecoScreen = {
   TicketDeco: TicketDecoContainer,
+};
+const saveCompleteScreen = {
+  TicketSaveComplete: SaveCompleteScreen,
+};
+const completeScreen = {
+  Complete: CompleteScreen,
 };
 
 const RootStack = createStackNavigator();
@@ -115,6 +123,36 @@ const RootNavigation = () => {
             headerShown: true,
             headerLeft: () => <BackButton />,
             headerTitle: "티켓 꾸미기",
+          }}
+        />
+      ))}
+      {Object.entries({
+        ...saveCompleteScreen,
+      }).map(([name, component]) => (
+        <RootStack.Screen
+          key={name}
+          name={name}
+          component={component}
+          options={{
+            title: "티켓 꾸미기 저장 완료",
+            headerShown: false,
+            headerLeft: () => <BackButton />,
+            headerTitle: "티켓 꾸미기 저장 완료",
+          }}
+        />
+      ))}
+      {Object.entries({
+        ...completeScreen,
+      }).map(([name, component]) => (
+        <RootStack.Screen
+          key={name}
+          name={name}
+          component={component}
+          options={{
+            title: "완료",
+            headerShown: false,
+            headerLeft: () => <BackButton />,
+            headerTitle: "완료",
           }}
         />
       ))}
