@@ -21,6 +21,6 @@ export const errorColor = "rgb(255, 92, 0)";
 export const backgroundColor = "#060047";
 export const whiteColor = "#FFFFFF";
 export const mainColor = "#E90164";
-export const accentColor = "FF5F9E";
+export const accentColor = "#FF5F9E";
 export const secondaryColor = "#979797";
 export const greyColor = "#D9D9D9";
