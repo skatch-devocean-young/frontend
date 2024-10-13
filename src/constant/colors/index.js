@@ -1,4 +1,5 @@
-export const defaultColor = "#rgb(83,83,83)";
+// export const defaultColor = "#rgb(83,83,83)";
+export const defaultColor = "#FFFFFF";
 export const descriptionColor = "#8D8D8D"; // 'rgb(141,141,141)
 export const descriptionColorVer2 = "rgb(158,158,158)"; // #9e9e9e
 
@@ -16,8 +17,10 @@ export const activeDotColor = "rgb(64,209,126)";
 
 export const errorColor = "rgb(255, 92, 0)";
 
-export const backgroundColor = "#F5F4FB";
+// export const backgroundColor = "#F5F4FB";
+export const backgroundColor = "#060047";
 export const whiteColor = "#FFFFFF";
-export const mainColor = "#4931D4";
-export const accentColor = "#CCF381";
+export const mainColor = "#E90164";
+export const accentColor = "FF5F9E";
 export const secondaryColor = "#979797";
+export const greyColor = "#D9D9D9";
