@@ -1,14 +1,14 @@
-import React from 'react';
+import React from "react";
 import {
   Platform,
   Pressable,
   StyleSheet,
   TouchableWithoutFeedback,
   View,
-} from 'react-native';
-import Modal from 'react-native-modal';
-import Text from './MyText';
-import { boldFontFamily, boldFontSize } from '../constant/fonts';
+} from "react-native";
+import Modal from "react-native-modal";
+import Text from "./MyText";
+import { boldFontFamily, boldFontSize } from "../constant/fonts";
 import {
   backgroundColor,
   blackColor,
@@ -16,22 +16,22 @@ import {
   descriptionColor,
   emphasisColor,
   mainColor,
-} from '../constant/colors';
-import { windowHeight, windowWidth } from '../constant/styles';
-import CustomImage from './CustomImage';
-import CloseIcon from '../constant/images/Close';
-import CustomButton from './CustomButton';
+} from "../constant/colors";
+import { windowHeight, windowWidth } from "../constant/styles";
+import CustomImage from "./CustomImage";
+import CloseIcon from "../constant/images/Close";
+import CustomButton from "./CustomButton";
 
 const CenterModal = ({
-  mainText = '사용자님의 산책을\n기록할게요',
-  content = '동선기록을 시작합니다.\n즐거운 산책경험을 만드세요!',
+  mainText = "사용자님의 산책을\n기록할게요",
+  content = "동선기록을 시작합니다.\n즐거운 산책경험을 만드세요!",
   isVisible = false,
   closeModal,
   handleConfirm,
   secondHandleConfirm = null,
   version = 1,
   renderMainBody = null,
-  buttonText = '기록 시작',
+  buttonText = "기록 시작",
   secondButtonText = null,
 }) => {
   return (
@@ -67,16 +67,16 @@ const CenterModal = ({
           <CustomButton
             title={buttonText}
             style={styles.button}
-            textStyle={{fontSize: 16, lineHeight: 31}}
+            textStyle={{ fontSize: 16, lineHeight: 31 }}
             handlePress={handleConfirm}
           />
           {secondButtonText !== null && (
             <CustomButton
               title={secondButtonText}
               style={styles.button}
-              textStyle={{fontSize: 16, lineHeight: 31}}
+              textStyle={{ fontSize: 16, lineHeight: 31 }}
               handlePress={secondHandleConfirm}
-              backgroundColor={'#AAAAAA'}
+              backgroundColor={"#AAAAAA"}
             />
           )}
         </View>
@@ -90,28 +90,27 @@ export default CenterModal;
 const styles = StyleSheet.create({
   modalContainer: {
     flex: 1,
-    alignItems: 'center',
-    justifyContent: 'center',
+    alignItems: "center",
+    justifyContent: "center",
     marginHorizontal: 41,
   },
   modalWrapper: {
-    backgroundColor: 'white',
-    width: '100%',
+    backgroundColor: "white",
+    width: "100%",
     paddingTop: 30,
     paddingBottom: 24,
     paddingHorizontal: 18,
     borderRadius: 15,
-    justifyContent: 'center',
+    justifyContent: "center",
   },
   topContainer: {
-    flexDirection: 'row',
-    alignItems: 'flex-start',
-    justifyContent: 'space-between',
+    flexDirection: "row",
+    alignItems: "flex-start",
+    justifyContent: "space-between",
   },
   titleText: {
     fontFamily: boldFontFamily,
     fontSize: 20,
-    color: 'black',
     lineHeight: 31,
   },
   close: {
@@ -127,14 +126,14 @@ const styles = StyleSheet.create({
     color: descriptionColor,
   },
   button: {
-    position: 'relative',
-    width: '100%',
+    position: "relative",
+    width: "100%",
     marginTop: 13,
     paddingBottom: 0,
     paddingTop: 0,
     paddingHorizontal: 0,
-    justifyContent: 'flex-start',
-    shadowColor: 'rgba(0,0,0,0)',
+    justifyContent: "flex-start",
+    shadowColor: "rgba(0,0,0,0)",
     shadowOffset: {
       width: 0,
       height: 0,
