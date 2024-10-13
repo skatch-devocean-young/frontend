@@ -13,18 +13,15 @@ import Text from "./MyText";
 import {
   FeedFocusedIcon,
   FeedIcon,
-  FriendsFocusedIcon,
-  FriendsIcon,
   HomeFocusedIcon,
   HomeIcon,
-  RecordFocusedIcon,
-  RecordIcon,
-  TicketFocusedIcon,
-  TicketIcon,
+  MyPageFocusedIcon,
+  MyPageIcon,
 } from "../constant/images/BottomTab";
 import CustomImage from "./CustomImage";
 import { bottomShadowStyle, topShadowStyle } from "../constant/styles";
-import { defaultColor, mainColor } from "../constant/colors";
+import { blackColor, defaultColor, mainColor } from "../constant/colors";
+import { boldFontFamily } from "../constant/fonts";
 
 const getIcon = (state) => {
   switch (state) {
@@ -37,9 +34,9 @@ const getIcon = (state) => {
     case "BottomTabAlbumFocused":
       return FeedFocusedIcon;
     case "BottomTabMypage":
-      return FriendsIcon;
+      return MyPageIcon;
     case "BottomTabMypageFocused":
-      return FriendsFocusedIcon;
+      return MyPageFocusedIcon;
 
     default:
       return HomeIcon;
@@ -126,7 +123,7 @@ const CustomBottomTab = (props) => {
   };
   if (!visible) return null;
   return (
-    <SafeAreaView edges={["bottom"]}>
+    <SafeAreaView edges={["bottom"]} style={{ backgroundColor: "#D9D9D9" }}>
       <BottomTabBar state={state} handlePress={handlePress} />
     </SafeAreaView>
   );
@@ -136,7 +133,6 @@ const style = StyleSheet.create({
   tabContainer: {
     flexDirection: "row",
     height: 55,
-    backgroundColor: "white",
     alignItems: "center",
     justifyContent: "space-around",
     paddingHorizontal: 16,
@@ -149,14 +145,16 @@ const style = StyleSheet.create({
   },
   icon: {
     marginTop: 10,
-    width: 29,
-    height: 22,
+    width: 20,
+    height: 20,
   },
   nameWrapper: {
-    marginTop: 8,
+    marginTop: 3,
   },
   name: {
     fontSize: 10,
+    fontFamily: boldFontFamily,
+    color: mainColor,
   },
 });
 

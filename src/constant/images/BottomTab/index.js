@@ -1,23 +1,15 @@
 import HomeIcon from "./Home/Home.png";
-import FeedIcon from "./Feed/Feed.png";
-import FriendsIcon from "./Friends/Friends.png";
-import RecordIcon from "./Record/Record.png";
 import HomeFocusedIcon from "./Home/HomeFocused.png";
+import FeedIcon from "./Feed/Feed.png";
 import FeedFocusedIcon from "./Feed/FeedFocused.png";
-import FriendsFocusedIcon from "./Friends/FriendsFocused.png";
-import RecordFocusedIcon from "./Record/RecordFocused.png";
-import TicketIcon from "./Ticket/Ticket.png";
-import TicketFocusedIcon from "./Ticket/TicketFocused.png";
+import MyPageIcon from "./MyPage/MyPage.png";
+import MyPageFocusedIcon from "./MyPage/MyPageFocused.png";
 
 export {
   HomeIcon,
-  FeedIcon,
-  FriendsIcon,
-  RecordIcon,
   HomeFocusedIcon,
+  FeedIcon,
   FeedFocusedIcon,
-  FriendsFocusedIcon,
-  RecordFocusedIcon,
-  TicketIcon,
-  TicketFocusedIcon,
+  MyPageIcon,
+  MyPageFocusedIcon,
 };
