@@ -24,6 +24,9 @@ import MyInfo from "../component/MyInfo";
 import Devider from "../../../components/Devider";
 import CustomImage from "../../../components/CustomImage";
 import { Arrow } from "../../../constant/images/Arrow";
+import { useDispatch, useSelector } from "react-redux";
+import RefreshIcon from "../../../constant/images/Refresh";
+import { changeAppMode } from "../../../function";
 
 const list = [
   {
@@ -39,11 +42,20 @@ const list = [
     toggle: 0,
   },
 ];
+
+const change = {
+  title: "전환하기",
+  toggle: 0,
+};
+
 export default function MypageScreen() {
   const isDarkMode = useColorScheme() === "dark";
   const navigation = useNavigation();
+  const dispatch = useDispatch();
 
   const [isPushEnabled, setIsPushEnabled] = useState(false);
+  const { appMode, isHost } = useSelector((state) => state.status);
+
   const toggleSwitch = () =>
     setIsPushEnabled((previousState) => !previousState);
 
@@ -51,6 +63,7 @@ export default function MypageScreen() {
     navigation.setOptions({
       header: () => headerComponent(),
     });
+    console.log(isHost, appMode);
   }, []);
 
   const headerComponent = () => {
@@ -69,6 +82,15 @@ export default function MypageScreen() {
   const handleNavigate = (title) => {
     // navigation.navigate("Home", { refresh: {} });
     console.log(title);
+  };
+
+  const handleChange = () => {
+    // TODO: 사용자 상태 확인 후, 코드 수정 필요
+    if (appMode == false) {
+      changeAppMode("1");
+    } else {
+      changeAppMode("0");
+    }
   };
 
   return (
@@ -101,6 +123,14 @@ export default function MypageScreen() {
           </View>
         </TouchableWithoutFeedback>
       ))}
+      {isHost && (
+        <TouchableWithoutFeedback onPress={handleChange}>
+          <View style={styles.itemContainer}>
+            <Text style={styles.itemTitle}>{change.title}</Text>
+            <CustomImage source={RefreshIcon} style={styles.itemIcon} />
+          </View>
+        </TouchableWithoutFeedback>
+      )}
     </ScrollView>
   );
 }
