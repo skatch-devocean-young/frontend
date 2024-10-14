@@ -53,12 +53,12 @@ export const changeIsHost = async (status) => {
 
 export const getAppMode = async () => {
   const appMode = await AsyncStorage.getItem("appMode");
-  return appMode === "1";
+  return appMode;
 };
 
-export const changeAppMode = async (status) => {
-  store.dispatch(setAppMode(status === "1"));
-  await AsyncStorage.setItem("appMode", status);
+export const changeAppMode = async (mode) => {
+  store.dispatch(setAppMode(mode));
+  await AsyncStorage.setItem("appMode", mode);
   RNRestart.Restart();
 };
 

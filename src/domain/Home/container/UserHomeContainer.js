@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from "react";
 import Spinner from "react-native-loading-spinner-overlay";
-import HomeScreen from "../screen/HomeScreen";
+import UserHomeScreen from "../screen/UserHomeScreen";
 const dummyEvents = [
   {
     id: 0,
@@ -212,24 +212,24 @@ const dummyEvents2 = [
   },
 ];
 
-export default function HomeContainer() {
+export default function UserHomeContainer() {
   const [loading, setLoading] = useState(true);
   const [festaList, setFestaList] = useState([]);
 
-  const handleFetchFesta = async () => {
-    const res = await getFestaList();
-    const { result } = res;
-    setFestaList(result);
-  };
+  // const handleFetchFesta = async () => {
+  //   const res = await getFestaList();
+  //   const { result } = res;
+  //   setFestaList(result);
+  // };
 
   useEffect(() => {
     setLoading(true);
-    handleFetchFesta();
+    // handleFetchFesta();
     setLoading(false);
   }, []);
   return loading ? (
     <Spinner visible={loading} />
   ) : (
-    <HomeScreen festaList={dummyEvents} topList={dummyEvents2} />
+    <UserHomeScreen festaList={dummyEvents} topList={dummyEvents2} />
   );
 }

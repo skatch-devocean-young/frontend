@@ -86,10 +86,10 @@ export default function MypageScreen() {
 
   const handleChange = () => {
     // TODO: 사용자 상태 확인 후, 코드 수정 필요
-    if (appMode == false) {
-      changeAppMode("1");
+    if (appMode == "host") {
+      changeAppMode("user");
     } else {
-      changeAppMode("0");
+      changeAppMode("host");
     }
   };
 

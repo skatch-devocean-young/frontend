@@ -5,15 +5,21 @@ import AlbumNavigator from "./Album";
 import MypageNavigator from "./Mypage";
 import CustomBottomTab from "../components/CustomBottomTab";
 import { CardStyleInterpolators } from "@react-navigation/stack";
+import { useSelector } from "react-redux";
 
 const Tab = createBottomTabNavigator();
 
-const bottomTabScreens = {
+const userBottomTabScreens = {
   BottomTabHome: HomeNavigator,
   BottomTabAlbum: AlbumNavigator,
   BottomTabMypage: MypageNavigator,
 };
+const hostBottomTabScreens = {
+  BottomTabHome: HomeNavigator,
+  BottomTabMypage: MypageNavigator,
+};
 const BottomTab = () => {
+  const { appMode } = useSelector((state) => state.status);
   return (
     <Tab.Navigator
       screenOptions={{
@@ -24,21 +30,38 @@ const BottomTab = () => {
       initialRouteName="BottomTabHome"
       tabBar={(props) => <CustomBottomTab {...props} />}
     >
-      {Object.entries({
-        ...bottomTabScreens,
-      }).map(([name, component]) => (
-        <Tab.Screen
-          options={{
-            unmountOnBlur: true,
-          }}
-          listeners={({ navigation }) => ({
-            blur: () => navigation.setParams({ screen: undefined }),
-          })}
-          key={name}
-          name={name}
-          component={component}
-        />
-      ))}
+      {appMode == "user" &&
+        Object.entries({
+          ...userBottomTabScreens,
+        }).map(([name, component]) => (
+          <Tab.Screen
+            options={{
+              unmountOnBlur: true,
+            }}
+            listeners={({ navigation }) => ({
+              blur: () => navigation.setParams({ screen: undefined }),
+            })}
+            key={name}
+            name={name}
+            component={component}
+          />
+        ))}
+      {appMode == "host" &&
+        Object.entries({
+          ...hostBottomTabScreens,
+        }).map(([name, component]) => (
+          <Tab.Screen
+            options={{
+              unmountOnBlur: true,
+            }}
+            listeners={({ navigation }) => ({
+              blur: () => navigation.setParams({ screen: undefined }),
+            })}
+            key={name}
+            name={name}
+            component={component}
+          />
+        ))}
     </Tab.Navigator>
   );
 };

@@ -5,13 +5,15 @@ import {
 import React, { useEffect, useState } from "react";
 import { SafeAreaView } from "react-native";
 import { boldFontFamily } from "../constant/fonts";
-import HomeContainer from "../domain/Home/container/HomeContainer";
+import HomeContainer from "../domain/Home/container/UserHomeContainer";
 import HostHomeContainer from "../domain/Home/container/HostHomeContainer";
 import { getAppMode, getIsHost } from "../function";
+import { useSelector } from "react-redux";
+import UserHomeContainer from "../domain/Home/container/UserHomeContainer";
 
 const Stack = createStackNavigator();
-const homeScreen = {
-  Home: HomeContainer,
+const userHomeScreen = {
+  Home: UserHomeContainer,
 };
 const hostHomeScreen = {
   HostHome: HostHomeContainer,
@@ -19,15 +21,13 @@ const hostHomeScreen = {
 
 const HomeNavigator = () => {
   const [isHost, setIsHost] = useState(false);
-  const [appMode, setAppMode] = useState(false);
+
+  const { appMode } = useSelector((state) => state.status);
   // const { isAuthenticated } = useSelector((state) => state.user);
   // const { statusBarHeight } = useSelector((state) => state.status);
   useEffect(() => {
     getIsHost().then((value) => {
       setIsHost(value);
-    });
-    getAppMode().then((value) => {
-      setAppMode(value);
     });
   }, []);
 
@@ -54,8 +54,8 @@ const HomeNavigator = () => {
         header: () => <SafeAreaView edges={["top"]}></SafeAreaView>,
       }}
     >
-      {appMode &&
-        Object.entries({ ...homeScreen }).map(([name, component]) => (
+      {appMode == "user" &&
+        Object.entries({ ...userHomeScreen }).map(([name, component]) => (
           <Stack.Screen
             key={name}
             name={name}
@@ -68,7 +68,7 @@ const HomeNavigator = () => {
             }}
           />
         ))}
-      {!appMode &&
+      {appMode == "host" &&
         Object.entries({ ...hostHomeScreen }).map(([name, component]) => (
           <Stack.Screen
             key={name}

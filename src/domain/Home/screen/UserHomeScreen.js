@@ -9,7 +9,7 @@ import {
 } from "react-native";
 import { useNavigation } from "@react-navigation/core";
 import Text from "../../../components/MyText";
-import { useEffect } from "react";
+import { useEffect, useState } from "react";
 import {
   boldFontFamily,
   boldFontSize,
@@ -19,6 +19,9 @@ import { backgroundColor, blackColor } from "../../../constant/colors";
 import FestaThumbItem from "../../Festa/component/FestaThumbItem";
 import FloatingTicket from "../components/FloatingTicket";
 import FestaPreview from "../../Festa/component/FestaPreview";
+import HostHomeScreen from "./HostHomeScreen";
+import { getAppMode } from "../../../function";
+import NavHeader from "../../../components/NavHeader";
 
 const feedList = [
   {
@@ -51,37 +54,27 @@ const list = [
     hashs: ["건축", "디자인"],
   },
 ];
-export default function HomeScreen({ festaList, topList }) {
-  const isDarkMode = useColorScheme() === "dark";
-  const navigaiton = useNavigation();
-  useEffect(() => {
-    navigaiton.setOptions({
-      header: () => headerComponent(),
-    });
-  }, []);
 
-  const headerComponent = () => {
-    return (
-      <SafeAreaView
-        edges={["top"]}
-        style={{ backgroundColor: isDarkMode ? blackColor : backgroundColor }}
-      >
-        <View style={styles.topContainer}>
-          <Text style={styles.title}>행사 피드</Text>
-        </View>
-      </SafeAreaView>
-    );
-  };
+export default function UserHomeScreen({ festaList, topList }) {
+  const navigation = useNavigation();
 
   const renderItem = ({ item, index }) => {
     return <FestaThumbItem festa={item} />;
   };
 
   const handleFullContent = () => {
-    navigaiton.navigate("FestaFeed");
-    // navigaiton.navigate("TicketDeco");
+    navigation.navigate("FestaFeed");
+    // navigation.navigate("TicketDeco");
   };
 
+  // useEffects -----------------------------------------------
+  useEffect(() => {
+    navigation.setOptions({
+      header: () => <NavHeader title={"행사 피드"} />,
+    });
+  }, []);
+
+  // return -----------------------------------------------
   return (
     <View style={styles.container}>
       <ScrollView style={styles.scrollContainer}>
@@ -138,20 +131,7 @@ const styles = StyleSheet.create({
     backgroundColor: backgroundColor,
     alignItems: "center",
   },
-  topContainer: {
-    paddingHorizontal: 16,
-    flexDirection: "row",
-    alignItems: "center",
-    justifyContent: "space-between",
-    paddingBottom: 11,
-    paddingTop: 20,
-  },
-  title: {
-    fontFamily: boldFontFamily,
-    fontSize: 20,
-    lineHeight: 31,
-    marginEnd: 8,
-  },
+
   festaContainer: {
     paddingTop: 16,
     paddingBottom: 26,
