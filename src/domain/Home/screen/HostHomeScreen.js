@@ -18,7 +18,7 @@ export default function HostHomeScreen({ festaList }) {
   const navigation = useNavigation();
 
   const handleNewFesta = () => {
-    navigation.navigate("");
+    navigation.navigate("FestaCreate");
   };
 
   const renderItem = ({ item, index }) => {

@@ -15,12 +15,20 @@ import SaveCompleteScreen from "../domain/Ticket/screen/SaveCompleteScreen";
 import CompleteScreen from "../components/CompleteScreen";
 import FestaFeedContainer from "../domain/Festa/Feed/container/FestaFeedContainer";
 import FestaDetailContainer from "../domain/Festa/Detail/container/FestaDetailContainer";
+import FestaCreateContainer from "../domain/Festa/Edit/container/FestaCreateContainer";
+import FestaModifyContainer from "../domain/Festa/Edit/container/FestaModifyContainer";
+import { backgroundColor, whiteColor } from "../constant/colors";
+import { headerStyle } from "../constant/styles";
 
 const festaFeedScreen = {
   FestaFeed: FestaFeedContainer,
 };
 const festaDetailScreen = {
   FestaDetail: FestaDetailContainer,
+};
+const festaEditScreens = {
+  FestaCreate: FestaCreateContainer,
+  FestaModify: FestaModifyContainer,
 };
 const ticketDetailScreen = {
   TicketDetail: TicketDetailContainer,
@@ -72,6 +80,7 @@ const RootNavigation = () => {
             headerShown: true,
             headerLeft: () => <BackButton />,
             headerTitle: "전체 행사 목록",
+            ...headerStyle,
           }}
         />
       ))}
@@ -91,6 +100,7 @@ const RootNavigation = () => {
               headerShown: true,
               headerLeft: () => <BackButton />,
               headerTitle: title,
+              ...headerStyle,
             };
           }}
         />
@@ -107,6 +117,7 @@ const RootNavigation = () => {
             headerShown: true,
             headerLeft: () => <BackButton />,
             headerTitle: "티켓 상세",
+            ...headerStyle,
           }}
         />
       ))}
@@ -122,6 +133,7 @@ const RootNavigation = () => {
             headerShown: true,
             headerLeft: () => <BackButton />,
             headerTitle: "티켓 꾸미기",
+            ...headerStyle,
           }}
         />
       ))}
@@ -137,6 +149,7 @@ const RootNavigation = () => {
             headerShown: false,
             headerLeft: () => <BackButton />,
             headerTitle: "티켓 꾸미기 저장 완료",
+            ...headerStyle,
           }}
         />
       ))}
@@ -152,10 +165,26 @@ const RootNavigation = () => {
             headerShown: false,
             headerLeft: () => <BackButton />,
             headerTitle: "완료",
+            ...headerStyle,
           }}
         />
       ))}
-
+      {Object.entries({
+        ...festaEditScreens,
+      }).map(([name, component]) => (
+        <RootStack.Screen
+          key={name}
+          name={name}
+          component={component}
+          options={{
+            title: "공연 정보 수정",
+            headerShown: true,
+            headerLeft: () => <BackButton />,
+            headerTitle: "공연 정보 수정",
+            ...headerStyle,
+          }}
+        />
+      ))}
       <RootStack.Screen name="BottomTab" component={BottomTab} />
     </RootStack.Navigator>
   );

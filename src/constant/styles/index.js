@@ -1,5 +1,6 @@
 import { Dimensions } from "react-native";
-import { borderColor } from "../colors";
+import { backgroundColor, borderColor, whiteColor } from "../colors";
+import { boldFontFamily } from "../fonts";
 
 export const { width: windowWidth, height: windowHeight } =
   Dimensions.get("window");
@@ -77,3 +78,13 @@ export const smallProfileStyle = {
 export const defaultBorderRadius = 6;
 
 export const defaultPaddingHorizontal = 16;
+
+export const headerStyle = {
+  headerStyle: {
+    backgroundColor: backgroundColor,
+  },
+  headerTitleStyle: {
+    color: whiteColor,
+    fontFamily: boldFontFamily,
+  },
+};
