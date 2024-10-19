@@ -5,11 +5,10 @@ import {
   useColorScheme,
   View,
 } from "react-native";
-import React, { useEffect } from "react";
+import React from "react";
 import { useNavigation } from "@react-navigation/core";
-import Text from "../../../components/MyText";
-import { backgroundColor } from "../../../constant/colors";
-import FestaPreview from "../component/FestaPreview";
+import { backgroundColor } from "../../../../constant/colors";
+import FestaPreview from "../../component/FestaPreview";
 
 const list = [
   {

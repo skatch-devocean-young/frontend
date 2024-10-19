@@ -3,19 +3,18 @@ import {
   CardStyleInterpolators,
   createStackNavigator,
 } from "@react-navigation/stack";
-import { useNavigation } from "@react-navigation/core";
 import BottomTab from "./BottomTab";
 
 import BackButton from "../components/BackButton";
-import CancelButton from "../components/CancelButton";
 
 import { boldFontFamily } from "../constant/fonts";
 import TicketDetailContainer from "../domain/Ticket/container/TicketDetailContainer";
-import FestaDetailContainer from "../domain/Festa/container/FestaDetailContainer";
-import FestaFeedContainer from "../domain/Festa/container/FestaFeedContainer";
+
 import TicketDecoContainer from "../domain/Ticket/container/TicketDecoContainer";
 import SaveCompleteScreen from "../domain/Ticket/screen/SaveCompleteScreen";
 import CompleteScreen from "../components/CompleteScreen";
+import FestaFeedContainer from "../domain/Festa/Feed/container/FestaFeedContainer";
+import FestaDetailContainer from "../domain/Festa/Detail/container/FestaDetailContainer";
 
 const festaFeedScreen = {
   FestaFeed: FestaFeedContainer,

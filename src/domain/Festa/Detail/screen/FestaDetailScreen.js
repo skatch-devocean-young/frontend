@@ -1,21 +1,17 @@
 import { ScrollView, StyleSheet, Text, View } from "react-native";
 import React, { useState } from "react";
-import {
-  backgroundColor,
-  borderColor,
-  defaultColor,
-  mainColor,
-} from "../../../constant/colors";
-import Devider from "../../../components/Devider";
+import { backgroundColor, borderColor } from "../../../../constant/colors";
+
 import {
   boldFontFamily,
   defaultFontFamily,
   defaultFontSize,
-} from "../../../constant/fonts";
-import CustomButton from "../../../components/CustomButton";
-import CustomImage from "../../../components/CustomImage";
+} from "../../../../constant/fonts";
+import CustomButton from "../../../../components/CustomButton";
+import CustomImage from "../../../../components/CustomImage";
 import { useNavigation } from "@react-navigation/core";
 import Spinner from "react-native-loading-spinner-overlay";
+import Devider from "../../../../components/Devider";
 
 export default function FestaDetailScreen({ item }) {
   const [isLoading, setIsLoading] = useState(false);
