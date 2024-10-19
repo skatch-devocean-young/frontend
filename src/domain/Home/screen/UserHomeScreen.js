@@ -107,7 +107,7 @@ export default function UserHomeScreen({ festaList, topList }) {
           </TouchableWithoutFeedback>
           {festaList.length > 0 ? (
             festaList.map((item, index) => (
-              <FestaPreview festa={item} key={index} />
+              <FestaPreview festa={item} key={index} mode={"user"} />
             ))
           ) : (
             <View style={[styles.nullContainer]}>
@@ -161,8 +161,6 @@ const styles = StyleSheet.create({
     bottom: 0,
   },
   feedContainer: {
-    // paddingTop: 21,
-    paddingHorizontal: 20,
     paddingBottom: 500,
   },
   fullContainer: {

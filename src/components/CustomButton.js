@@ -13,6 +13,7 @@ import {
   windowWidth,
 } from "../constant/styles";
 import Text from "./MyText";
+import CustomImage from "./CustomImage";
 
 const CustomButton = ({
   title = "다음",
@@ -22,6 +23,8 @@ const CustomButton = ({
   clickable = true,
   style: containerStyle = null,
   textStyle = null,
+  imagable = false,
+  imgSource = null,
 }) => {
   return (
     <View style={[styles.container, containerStyle]}>
@@ -33,6 +36,11 @@ const CustomButton = ({
             !clickable && { backgroundColor: "#9e9e9e" },
           ]}
         >
+          {imagable && (
+            <View style={styles.imgWrapper}>
+              <CustomImage source={imgSource} style={styles.img} />
+            </View>
+          )}
           <Text style={[styles.text, textStyle]}>{title}</Text>
         </View>
       </TouchableWithoutFeedback>
@@ -45,24 +53,22 @@ export default CustomButton;
 const styles = StyleSheet.create({
   container: {
     width: windowWidth,
-    paddingBottom: Platform.OS === "ios" ? 44 : 14.5,
-    backgroundColor: "white",
+    paddingBottom: 24,
     paddingTop: 14.5,
     paddingHorizontal: 20,
 
     // justifyContent: 'flex-start',
     ...topShadowStyle,
-
-    position: "absolute",
-    bottom: 0,
   },
   wrapper: {
     backgroundColor: mainColor,
     borderRadius: 20,
-    paddingVertical: 13,
+    paddingVertical: 17,
     alignItems: "center",
     justifyContent: "center",
     height: 60,
+
+    flexDirection: "row",
   },
   text: {
     fontFamily: boldFontFamily,
@@ -70,4 +76,15 @@ const styles = StyleSheet.create({
     letterSpacing: -0.36,
     color: "white",
   },
+  imgWrapper: {
+    backgroundColor: "white",
+    borderRadius: 50,
+    marginRight: 8,
+    marginBottom: 1,
+    width: 16,
+    height: 16,
+    justifyContent: "center",
+    alignItems: "center",
+  },
+  img: { width: 12, height: 12 },
 });

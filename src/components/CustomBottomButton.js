@@ -14,7 +14,7 @@ import {
 } from "../constant/styles";
 import Text from "./MyText";
 
-const CustomButton2 = ({
+const CustomBottomButton = ({
   title = "다음",
   handlePress,
   backgroundColor,
@@ -40,7 +40,7 @@ const CustomButton2 = ({
   );
 };
 
-export default CustomButton2;
+export default CustomBottomButton;
 
 const styles = StyleSheet.create({
   container: {

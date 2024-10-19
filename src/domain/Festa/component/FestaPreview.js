@@ -2,46 +2,61 @@ import { StyleSheet, TouchableWithoutFeedback, View } from "react-native";
 import React from "react";
 import Text from "../../../components/MyText";
 import {
+  blackColor,
   mainColor,
   secondaryColor,
   whiteColor,
 } from "../../../constant/colors";
-import {
-  boldFontFamily,
-  boldFontSize,
-  mediumFontFamily,
-} from "../../../constant/fonts";
+import { boldFontFamily, mediumFontFamily } from "../../../constant/fonts";
 import CustomImage from "../../../components/CustomImage";
-import AddressIcon from "../../../constant/images/Location";
 import { useNavigation } from "@react-navigation/core";
 
-export default function FestaPreview({ festa }) {
+import {
+  CalendarIcon,
+  MapIcon,
+  PeopleIcon,
+  TicketDateIcon,
+} from "../../../constant/images/Festa";
+
+export default function FestaPreview({ festa, mode }) {
   const navigation = useNavigation();
+  const {
+    title,
+    host_name = hostName,
+    date,
+    place_address = placeAddress,
+    capacity,
+    start_date,
+    end_date,
+  } = festa;
 
   const handleNavigate = () => {
     navigation.navigate("FestaDetail", { item: festa, title: festa.title });
+  };
+
+  const ImgTextComponent = ({ icon, content }) => {
+    return (
+      <View style={styles.imgTextWrapper}>
+        <CustomImage style={styles.img} source={icon} />
+        <Text style={styles.text}>{content}</Text>
+      </View>
+    );
   };
   return (
     <TouchableWithoutFeedback onPress={handleNavigate}>
       <View style={styles.container}>
         <View style={styles.infoContainer}>
-          <Text style={styles.date}>{festa.date}</Text>
           <Text numberOfLines={1} style={styles.title}>
-            {festa.title}
+            {title}
           </Text>
-          <Text style={styles.hostName}>{festa.host_name}</Text>
-          <View style={styles.addressContainer}>
-            <CustomImage source={AddressIcon} style={styles.addressIcon} />
-            <Text style={styles.addressText}>{festa.place_address}</Text>
-          </View>
-          <View style={styles.hashContainer}>
-            {festa.hashs.length > 0 &&
-              festa.hashs.map((item, index) => (
-                <View style={styles.hashItem} key={index}>
-                  <Text style={styles.hashText}>#{item}</Text>
-                </View>
-              ))}
-          </View>
+          {mode == "user" && <Text style={styles.hostName}>{host_name}</Text>}
+          <ImgTextComponent icon={CalendarIcon} content={date.substr(0, 10)} />
+          <ImgTextComponent icon={MapIcon} content={place_address} />
+          <ImgTextComponent icon={PeopleIcon} content={`${capacity}명`} />
+          <ImgTextComponent
+            icon={TicketDateIcon}
+            content={`${start_date.substr(0, 10)} ~ ${end_date.substr(0, 10)}`}
+          />
         </View>
         <View style={styles.imgContainer}>
           <CustomImage source={{ uri: festa.image }} style={styles.posterImg} />
@@ -53,76 +68,58 @@ export default function FestaPreview({ festa }) {
 
 const styles = StyleSheet.create({
   container: {
-    height: 150,
-    backgroundColor: whiteColor,
-    marginBottom: 20,
-    borderRadius: 20,
+    height: 159,
+    paddingLeft: 40,
 
+    backgroundColor: whiteColor,
+    marginBottom: 1,
     color: secondaryColor,
     display: "flex",
     flexDirection: "row",
     justifyContent: "space-between",
   },
   infoContainer: {
-    paddingHorizontal: 17,
-    paddingVertical: 12,
     width: 230,
+    paddingVertical: 20,
+    // backgroundColor: "red",
+    justifyContent: "center",
   },
   imgContainer: {
-    width: 107,
-    height: 150,
-    backgroundColor: mainColor,
-    borderTopRightRadius: 20,
-    borderBottomRightRadius: 20,
+    width: 112,
+    height: 159,
   },
-  posterImg: {
-    borderTopRightRadius: 20,
-    borderBottomRightRadius: 20,
-  },
+  posterImg: {},
   date: {
     marginBottom: 6,
     fontFamily: mediumFontFamily,
     color: secondaryColor,
   },
   title: {
-    fontSize: 18,
+    fontSize: 20,
     fontFamily: boldFontFamily,
     ellipsizeMode: "tail",
     color: mainColor,
-    marginBottom: 4,
+    marginBottom: 8,
   },
   hostName: {
-    // marginBottom: 4,
-    fontFamily: boldFontFamily,
+    marginTop: -5,
+    marginBottom: 2,
     color: secondaryColor,
   },
-  hashContainer: {
-    display: "flex",
+
+  imgTextWrapper: {
     flexDirection: "row",
+    // backgroundColor: "red",
   },
-  hashItem: {
-    backgroundColor: "rgba(73, 49, 212, 0.1)",
-    paddingHorizontal: 8,
-    marginRight: 3,
-    borderRadius: 20,
+  img: {
+    width: 14,
+    height: 12,
+    marginTop: 3,
+    marginRight: 6,
   },
-  hashText: {
-    color: "rgba(73, 49, 212, 0.7)",
-    fontSize: 12,
-    lineHeight: 22,
-  },
-  addressContainer: {
-    display: "flex",
-    flexDirection: "row",
-    alignItems: "center",
-    marginBottom: 4,
-  },
-  addressIcon: {
-    width: 16,
-    height: 16,
-  },
-  addressText: {
-    fontSize: 12,
-    color: secondaryColor,
+  text: {
+    color: blackColor,
+    fontSize: 10,
+    lineHeight: 18,
   },
 });
