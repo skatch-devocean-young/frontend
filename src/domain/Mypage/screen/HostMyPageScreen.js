@@ -30,6 +30,10 @@ import { changeAppMode } from "../../../function";
 
 const list = [
   {
+    title: "아티스트 정보",
+    toggle: 0,
+  },
+  {
     title: "푸시알림",
     toggle: 1,
   },
@@ -48,7 +52,7 @@ const change = {
   toggle: 0,
 };
 
-export default function MypageScreen() {
+export default function HostMypageScreen() {
   const isDarkMode = useColorScheme() === "dark";
   const navigation = useNavigation();
   const dispatch = useDispatch();
@@ -92,6 +96,8 @@ export default function MypageScreen() {
       changeAppMode("host");
     }
   };
+
+  // TODO: 푸시알림 토글에 따른 함수 필요
 
   return (
     <ScrollView style={styles.scrollContainer}>
