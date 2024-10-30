@@ -68,11 +68,6 @@ export default function UserHomeScreen({ festaList, topList }) {
   };
 
   // useEffects -----------------------------------------------
-  useEffect(() => {
-    navigation.setOptions({
-      header: () => <NavHeader title={"행사 피드"} />,
-    });
-  }, []);
 
   // return -----------------------------------------------
   return (

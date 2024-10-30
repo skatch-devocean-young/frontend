@@ -3,8 +3,8 @@ import React from "react";
 import { whiteColor } from "../constant/colors";
 import Text from "./MyText";
 
-export default function Devider({ color }) {
-  return <View style={[styles.container, { backgroundColor: color }]} />;
+export default function Devider({ color, style }) {
+  return <View style={[styles.container, { backgroundColor: color }, style]} />;
 }
 
 const styles = StyleSheet.create({

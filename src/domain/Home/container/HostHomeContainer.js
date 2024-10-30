@@ -1,8 +1,11 @@
 import { StyleSheet, Text, View } from "react-native";
-import React from "react";
+import React, { useEffect } from "react";
 import HostHomeScreen from "../screen/HostHomeScreen";
+import NavHeader from "../../../components/NavHeader";
 
-export default function HostHomeContainer() {
+export default function HostHomeContainer({ navigation, route }) {
+  const { params } = route;
+  //   const {} = params;
   const dummyEvents = [
     {
       id: 0,
@@ -135,7 +138,22 @@ export default function HostHomeContainer() {
       hashs: ["React", "FE"],
     },
   ];
-  return <HostHomeScreen festaList={dummyEvents} />;
+
+  const handleNewFesta = () => {
+    navigation.navigate("FestaCreate");
+  };
+
+  // useEffects -----------------------------------------------
+  useEffect(() => {
+    navigation.setOptions({
+      header: () => <NavHeader title={"행사 피드"} />,
+    });
+  }, []);
+
+  // return -----------------------------------------------
+  return (
+    <HostHomeScreen festaList={dummyEvents} handleNewFesta={handleNewFesta} />
+  );
 }
 
 const styles = StyleSheet.create({});

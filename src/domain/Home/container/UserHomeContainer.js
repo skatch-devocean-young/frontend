@@ -1,5 +1,6 @@
 import React, { useEffect, useState } from "react";
 import Spinner from "react-native-loading-spinner-overlay";
+import NavHeader from "../../../components/NavHeader";
 import UserHomeScreen from "../screen/UserHomeScreen";
 const dummyEvents = [
   {
@@ -212,7 +213,10 @@ const dummyEvents2 = [
   },
 ];
 
-export default function UserHomeContainer() {
+export default function UserHomeContainer({ navigation, routes }) {
+  const { props } = routes;
+  const {} = props;
+
   const [loading, setLoading] = useState(true);
   const [festaList, setFestaList] = useState([]);
 
@@ -221,6 +225,13 @@ export default function UserHomeContainer() {
   //   const { result } = res;
   //   setFestaList(result);
   // };
+
+  // useEffects -----------------------------------------------
+  useEffect(() => {
+    navigation.setOptions({
+      header: () => <NavHeader title={"행사 피드"} />,
+    });
+  }, []);
 
   useEffect(() => {
     setLoading(true);

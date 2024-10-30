@@ -31,7 +31,12 @@ export default function FestaPreview({ festa, mode }) {
   } = festa;
 
   const handleNavigate = () => {
-    navigation.navigate("FestaDetail", { item: festa, title: festa.title });
+    if (mode == "host") {
+      navigation.navigate("FestaModify", { item: festa, title: festa.title });
+    }
+    if (mode == "user") {
+      navigation.navigate("FestaDetail", { item: festa, title: festa.title });
+    }
   };
 
   const ImgTextComponent = ({ icon, content }) => {

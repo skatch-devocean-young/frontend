@@ -14,22 +14,11 @@ import CustomButton from "../../../components/CustomButton";
 import { PlusIcon } from "../../../constant/images/icons";
 import FestaPreview from "../../Festa/component/FestaPreview";
 
-export default function HostHomeScreen({ festaList }) {
-  const navigation = useNavigation();
-
-  const handleNewFesta = () => {
-    navigation.navigate("FestaCreate");
-  };
-
+export default function HostHomeScreen({ festaList, handleNewFesta }) {
   const renderItem = ({ item, index }) => {
     return <FestaPreview festa={item} mode={"host"} />;
   };
   // useEffects -----------------------------------------------
-  useEffect(() => {
-    navigation.setOptions({
-      header: () => <NavHeader title={"행사 관리"} />,
-    });
-  }, []);
 
   // return -----------------------------------------------
   return (
