@@ -2,12 +2,12 @@ import React from "react";
 import { Pressable, StyleSheet, View } from "react-native";
 import Modal from "react-native-modal";
 import Text from "./MyText";
-import { borderColor } from "../constant/colors";
+import { blackColor, borderColor } from "../constant/colors";
 import { boldFontFamily } from "../constant/fonts";
 import { shadowStyle, windowHeight, windowWidth } from "../constant/styles";
 
 const CameraSelectModal = (props) => {
-  const { isVisible, openCamera, openImageLibrary, cancelModal } = props;
+  const { openCamera, openImageLibrary, cancelModal } = props;
   return (
     <Modal
       {...props}
@@ -19,8 +19,6 @@ const CameraSelectModal = (props) => {
       deviceWidth={windowWidth}
       backdropColor="gray"
       backdropOpacity={0.6}
-      isVisible={isVisible}
-      onBackButtonPress={() => cancelModal()}
     >
       <View style={styles.modalButtonContainer}>
         <Pressable
@@ -69,5 +67,6 @@ const styles = StyleSheet.create({
   },
   modalButtonText: {
     fontFamily: boldFontFamily,
+    color: blackColor,
   },
 });

@@ -214,8 +214,8 @@ const dummyEvents2 = [
 ];
 
 export default function UserHomeContainer({ navigation, routes }) {
-  const { props } = routes;
-  const {} = props;
+  // const { props } = routes;
+  // const {} = props;
 
   const [loading, setLoading] = useState(true);
   const [festaList, setFestaList] = useState([]);

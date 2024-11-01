@@ -5,7 +5,7 @@ import {
   TouchableWithoutFeedback,
   View,
 } from "react-native";
-import React, { useRef, useState } from "react";
+import React, { useEffect, useRef, useState } from "react";
 import {
   backgroundColor,
   greyColor,
@@ -22,6 +22,7 @@ import { KeyboardAwareScrollView } from "react-native-keyboard-aware-scroll-view
 import { CalendarIcon } from "../../../../constant/images/Festa";
 import CustomButton from "../../../../components/CustomButton";
 import HostComment from "../components/HostComment";
+import CameraSelectModal from "../../../../components/CameraSelectModal";
 
 // {
 //     id: 2,
@@ -46,11 +47,19 @@ export default function FestaEditScreen({
   festa,
   handleFestaInfo,
 
+  cameraModalVisible,
+  openCameraModal,
+  cancelModal,
+  openCamera,
+  openImageLibrary,
+  openModal,
+  closeModal,
+
   //   id,
   //   setId,
   //   title,
   //   setTitle,
-  //   image,
+  image,
   //   setImage,
   //   date,
   //   setDate,
@@ -92,6 +101,10 @@ export default function FestaEditScreen({
 
   //     );
   //   };
+
+  useEffect(() => {
+    console.log("THIS------- ", image);
+  }, [image]);
 
   const list = [
     {
@@ -141,7 +154,7 @@ export default function FestaEditScreen({
   const [v, setV] = useState("");
   const [id, setId] = useState(null);
   const [title, setTitle] = useState("");
-  const [image, setImage] = useState("");
+  // const [image, setImage] = useState("");
   const [date, setDate] = useState("");
   const [hostName, sethostName] = useState("");
   const [capacity, setCapacity] = useState("");
@@ -176,10 +189,15 @@ export default function FestaEditScreen({
         <View style={styles.container}>
           <View style={styles.innerContainer}>
             <TouchableWithoutFeedback
-              onPress={() => handleFestaInfo({ id: "3" })}
+              // onPress={() => handleFestaInfo({ id: "3" })}
+              onPress={openCameraModal}
             >
               <View style={styles.posterWrapper}>
-                <CustomImage source={image} />
+                <CustomImage
+                  source={{ uri: image.image }}
+                  style={styles.posterImg}
+                  resizeMode="contain"
+                />
               </View>
             </TouchableWithoutFeedback>
             <View style={styles.infoContainer}>
@@ -199,6 +217,14 @@ export default function FestaEditScreen({
               onChangeText={handleComment}
             />
           </View>
+
+          {/* 카메라 선택 모달 */}
+          <CameraSelectModal
+            isVisible={cameraModalVisible}
+            openCamera={openCamera}
+            openImageLibrary={openImageLibrary}
+            cancelModal={cancelModal}
+          />
 
           <CustomButton title="등록하기" handlePress={handlePress} />
         </View>
@@ -226,5 +252,8 @@ const styles = StyleSheet.create({
   infoContainer: {
     // backgroundColor: "red",
     marginBottom: 20,
+  },
+  posterImg: {
+    width: "100%",
   },
 });
