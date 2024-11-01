@@ -157,6 +157,8 @@ export default function FestaEditScreen({
     setComment(text);
   };
 
+  const handlePress = () => {};
+
   return (
     <KeyboardAvoidingView
       style={{ flex: 1, backgroundColor: backgroundColor }}
@@ -198,7 +200,7 @@ export default function FestaEditScreen({
             />
           </View>
 
-          <CustomButton />
+          <CustomButton title="등록하기" handlePress={handlePress} />
         </View>
       </KeyboardAwareScrollView>
     </KeyboardAvoidingView>

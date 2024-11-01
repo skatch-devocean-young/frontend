@@ -14,6 +14,7 @@ export default function HostComment({ title, value, onChangeText }) {
           onChangeText={onChangeText}
           style={styles.hostCommentInput}
           placeholder={"입금 방법과 추가 내용을 상세히 적어주세요✏️"}
+          multiline={true}
         >
           {/* <CustomImage source={EditIcon} style={styles.hostCommentIcon} /> */}
         </TextInput>
