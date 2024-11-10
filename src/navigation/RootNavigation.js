@@ -19,6 +19,7 @@ import FestaCreateContainer from "../domain/Festa/Edit/container/FestaCreateCont
 import FestaModifyContainer from "../domain/Festa/Edit/container/FestaModifyContainer";
 import { backgroundColor, whiteColor } from "../constant/colors";
 import { headerStyle } from "../constant/styles";
+import HostFestaDetailContainer from "../domain/Festa/Detail/container/HostFestaDetailContainer";
 
 const festaFeedScreen = {
   FestaFeed: FestaFeedContainer,
@@ -30,6 +31,10 @@ const festaEditScreens = {
   FestaCreate: FestaCreateContainer,
   FestaModify: FestaModifyContainer,
 };
+const hostFestaDetailScreen = {
+  HostFestaDetail: HostFestaDetailContainer,
+};
+
 const ticketDetailScreen = {
   TicketDetail: TicketDetailContainer,
 };
@@ -181,6 +186,22 @@ const RootNavigation = () => {
             headerShown: true,
             headerLeft: () => <BackButton />,
             headerTitle: "공연 정보 수정",
+            ...headerStyle,
+          }}
+        />
+      ))}
+      {Object.entries({
+        ...hostFestaDetailScreen,
+      }).map(([name, component]) => (
+        <RootStack.Screen
+          key={name}
+          name={name}
+          component={component}
+          options={{
+            title: "공연 상세 정보",
+            headerShown: true,
+            headerLeft: () => <BackButton />,
+            headerTitle: "공연 상세 정보",
             ...headerStyle,
           }}
         />

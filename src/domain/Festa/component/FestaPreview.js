@@ -32,7 +32,10 @@ export default function FestaPreview({ festa, mode }) {
 
   const handleNavigate = () => {
     if (mode == "host") {
-      navigation.navigate("FestaModify", { item: festa, title: festa.title });
+      navigation.navigate("HostFestaDetail", {
+        item: festa,
+        title: festa.title,
+      });
     }
     if (mode == "user") {
       navigation.navigate("FestaDetail", { item: festa, title: festa.title });

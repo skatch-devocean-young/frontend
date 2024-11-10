@@ -196,7 +196,7 @@ export default function FestaEditScreen({
                 <CustomImage
                   source={{ uri: image.image }}
                   style={styles.posterImg}
-                  resizeMode="contain"
+                  resizeMode="cover"
                 />
               </View>
             </TouchableWithoutFeedback>
@@ -208,6 +208,7 @@ export default function FestaEditScreen({
                   value={item.value}
                   handleValue={item.func}
                   icon={item.icon}
+                  editable={true}
                 />
               ))}
             </View>
@@ -255,5 +256,6 @@ const styles = StyleSheet.create({
   },
   posterImg: {
     width: "100%",
+    borderRadius: 20,
   },
 });

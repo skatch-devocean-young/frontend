@@ -16,7 +16,7 @@ export default function HostHomeContainer({ navigation, route }) {
       start_date: "2024-09-01 09:00",
       end_date: "2024-09-14 23:59",
       host_name: "Flutter Korea",
-      capacity: 500,
+      capacity: "500",
       location: "송도컨벤시아, 인천",
       price: "무료",
 
@@ -52,7 +52,7 @@ export default function HostHomeContainer({ navigation, route }) {
       end_date: "2024-09-24 23:59",
 
       host_name: "AI Korea",
-      capacity: 200,
+      capacity: "200",
       location: "Busan International Convention Center",
       price: "30,000원",
 
@@ -70,7 +70,7 @@ export default function HostHomeContainer({ navigation, route }) {
       end_date: "2024-10-09 23:59",
 
       host_name: "JS Korea",
-      capacity: 50,
+      capacity: "50",
       location: "Gangnam Tech Space",
       price: "15,000원",
 
@@ -89,7 +89,7 @@ export default function HostHomeContainer({ navigation, route }) {
       end_date: "2024-10-14 23:59",
 
       host_name: "Startup Hub Korea",
-      capacity: 75,
+      capacity: "75",
       location: "Daejeon Creative Center",
       price: "50,000원",
 
@@ -109,7 +109,7 @@ export default function HostHomeContainer({ navigation, route }) {
       end_date: "2024-11-04 23:59",
 
       host_name: "Design Korea",
-      capacity: 120,
+      capacity: "120",
       location: "Incheon Design Center",
       price: "20,000원",
 
@@ -125,7 +125,7 @@ export default function HostHomeContainer({ navigation, route }) {
         "https://lh4.googleusercontent.com/LuNf1KRnH0mQ25LjBjYWinvrymegD71daXoLOm2UbkG9eZsqltqPscpjon4p08Fe68yC2CE8FisPwlV9_TodYM0MMFCeLifVExQUas9WnKbBNRxMWdKtg3bfCCZKe9P4Xg=w2044",
       date: "2024-12-15 14:00",
       host_name: "React Korea",
-      capacity: 100,
+      capacity: "100",
       location: "Seoul Startup Hub",
       price: "무료",
 

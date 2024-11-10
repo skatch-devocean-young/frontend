@@ -14,7 +14,13 @@ import CustomImage from "../../../../components/CustomImage";
 import Devider from "../../../../components/Devider";
 import { KeyboardAwareScrollView } from "react-native-keyboard-aware-scroll-view";
 
-export default function InputItem({ title, value, handleValue, icon }) {
+export default function InputItem({
+  title,
+  value,
+  handleValue,
+  icon,
+  editable,
+}) {
   return (
     <View>
       <View style={styles.infoItemWrapper}>
@@ -25,6 +31,7 @@ export default function InputItem({ title, value, handleValue, icon }) {
             handleValue(text);
           }}
           style={styles.textInput}
+          editable={editable}
         />
         <CustomImage source={icon} style={styles.icon} />
       </View>

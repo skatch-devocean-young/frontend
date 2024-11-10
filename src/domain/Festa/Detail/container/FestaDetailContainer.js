@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useEffect } from "react";
 import FestaDetailScreen from "../screen/FestaDetailScreen";
 
 export default function FestaDetailContainer({ navigation, route }) {
