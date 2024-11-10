@@ -34,9 +34,9 @@ const QRScanner = (props) => {
     requestCameraPermission();
 
     //if it is idle for 15 secs, it will be closed
-    setTimeout(() => {
-      props.onRead(null);
-    }, 15 * 1000);
+    // setTimeout(() => {
+    //   props.onRead(null);
+    // }, 15 * 1000);
   }, []);
 
   if (device == null || !hasPermission) {

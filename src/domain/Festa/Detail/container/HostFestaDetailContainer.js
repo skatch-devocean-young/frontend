@@ -19,7 +19,8 @@ export default function HostFestaDetailContainer({ navigation, route }) {
 
   const [selectModalVisible, setSelectModalVisible] = useState(false);
   const [qrScannerVisible, setQrScannerVisible] = useState(false);
-  const [qrValue, setQrValue] = useState(false);
+  const [qrFestaId, setQrFestaId] = useState(null);
+  const [qrUserId, setQrUserId] = useState(null);
 
   const handleModify = () => {
     navigation.navigate("FestaModify", { item });
@@ -55,11 +56,14 @@ export default function HostFestaDetailContainer({ navigation, route }) {
   }, [qrScannerVisible]);
 
   const onQrRead = (qrtext) => {
-    setQrValue(qrtext);
     setQrScannerVisible(false);
     if (qrtext !== null) {
       Alert.alert(`${qrtext}`);
     }
+    const json = JSON.parse(qrtext);
+    console.log(json.festaId, json.uId);
+    setQrFestaId(json.festaId);
+    setQrUserId(json.uId);
   };
 
   return (
