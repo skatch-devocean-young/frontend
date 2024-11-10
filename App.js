@@ -48,12 +48,34 @@ const App = () => {
 
     const appModeAsync = await getAppMode();
     if (appModeAsync === null) {
-      await setAppMode("0");
-      dispatch(setAppMode(false));
+      await setAppMode("user");
+      dispatch(setAppMode("user"));
     } else {
       dispatch(setAppMode(appModeAsync));
     }
   };
+
+  // const requestCameraPermission = async () => {
+  //   try {
+  //     const granted = await PermissionsAndroid.request(
+  //       PermissionsAndroid.PERMISSIONS.CAMERA,
+  //       {
+  //         title: '카메라 접근 권한 허용',
+  //         message: 'GaDa가 카메라 접근 권한을 요청합니다.',
+  //         buttonNegative: '취소',
+  //         buttonPositive: '확인',
+  //       },
+  //     );
+  //     if (granted === PermissionsAndroid.RESULTS.GRANTED) {
+  //       // console.log('You can use the camera');
+  //     } else {
+  //       // console.log('Camera permission denied');
+  //       // RNRestart.Restart();
+  //     }
+  //   } catch (err) {
+  //     console.warn(err);
+  //   }
+  // };
 
   return (
     <SafeAreaProvider style={backgroundStyle}>

@@ -28,10 +28,18 @@ const festaFeedScreen = {
 const festaDetailScreen = {
   FestaDetail: FestaDetailContainer,
 };
-const festaEditScreens = {
-  FestaCreate: FestaCreateContainer,
-  FestaModify: FestaModifyContainer,
-};
+const festaEditScreens = [
+  {
+    name: "FestaCreate",
+    title: "공연 등록",
+    screen: FestaCreateContainer,
+  },
+  {
+    name: "FestaModify",
+    title: "공연 정보 수정",
+    screen: FestaModifyContainer,
+  },
+];
 const hostFestaDetailScreen = {
   HostFestaDetail: HostFestaDetailContainer,
 };
@@ -178,18 +186,16 @@ const RootNavigation = () => {
           }}
         />
       ))}
-      {Object.entries({
-        ...festaEditScreens,
-      }).map(([name, component]) => (
+      {festaEditScreens.map(({ name, title, screen }) => (
         <RootStack.Screen
           key={name}
           name={name}
-          component={component}
+          component={screen}
           options={{
-            title: "공연 정보 수정",
+            title: title,
             headerShown: true,
             headerLeft: () => <BackButton />,
-            headerTitle: "공연 정보 수정",
+            headerTitle: title,
             ...headerStyle,
           }}
         />
