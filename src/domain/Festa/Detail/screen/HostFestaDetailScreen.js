@@ -27,6 +27,8 @@ export default function HostFestaDetailScreen({
   selectModalVisible,
   cancelModal,
   handleModify,
+  handleManageBtn,
+  handleQRBtn,
 
   //   id,
   //   setId,
@@ -91,7 +93,6 @@ export default function HostFestaDetailScreen({
   useEffect(() => {
     console.log(selectModalVisible);
   }, []);
-  const handlePress = () => {};
 
   const list = [
     {
@@ -167,12 +168,12 @@ export default function HostFestaDetailScreen({
         </View>
 
         <CustomButton
-          title="행사 관리"
-          handlePress={handlePress}
+          title="공연 관리"
+          handlePress={handleManageBtn}
           style={{ marginBottom: -24 }}
           backgroundColor={accentColor}
         />
-        <CustomButton title="참석 QR 스캔" handlePress={handlePress} />
+        <CustomButton title="참석 QR 스캔" handlePress={handleQRBtn} />
         <SelectModal
           isVisible={selectModalVisible}
           openFirst={handleModify}

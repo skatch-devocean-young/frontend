@@ -16,17 +16,20 @@ export default function HostFestaDetailContainer({ navigation, route }) {
     cancelModal();
   };
   const handleHeaderBtn = () => {
-    console.log("hi");
     setSelectModalVisible(true);
-    console.log(selectModalVisible);
   };
   const cancelModal = () => {
     setSelectModalVisible(false);
   };
 
+  const handleManageBtn = () => {
+    navigation.navigate("FestaManage");
+  };
+  const handleQRBtn = () => {};
+
   useEffect(() => {
     navigation.setOptions({
-      headerTitle: "행사 상세 정보",
+      headerTitle: "공연 상세 정보",
       headerRight: () => <EditButton handlePress={handleHeaderBtn} />,
     });
   }, []);
@@ -37,6 +40,8 @@ export default function HostFestaDetailContainer({ navigation, route }) {
       selectModalVisible={selectModalVisible}
       handleModify={handleModify}
       cancelModal={cancelModal}
+      handleManageBtn={handleManageBtn}
+      handleQRBtn={handleQRBtn}
     />
   );
 }
