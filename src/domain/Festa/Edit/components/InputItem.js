@@ -18,7 +18,7 @@ export default function InputItem({
   title,
   value,
   handleValue,
-  icon,
+  icon = null,
   editable,
 }) {
   return (

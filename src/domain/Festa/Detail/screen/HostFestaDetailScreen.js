@@ -19,10 +19,14 @@ import HostComment from "../../Edit/components/HostComment";
 import InputItem from "../../Edit/components/InputItem";
 import CustomImage from "../../../../components/CustomImage";
 import { EditIcon, ShowIcon } from "../../../../constant/images/Festa/Edit";
+import SelectModal from "../../../../components/SelectModal";
 
 export default function HostFestaDetailScreen({
   festa,
   item,
+  selectModalVisible,
+  cancelModal,
+  handleModify,
 
   //   id,
   //   setId,
@@ -48,7 +52,6 @@ export default function HostFestaDetailScreen({
   //   placeAddress,
   //   setPlaceAddress,
 }) {
-  //   console.log(festa);
   const {
     // id,
     title,
@@ -84,54 +87,46 @@ export default function HostFestaDetailScreen({
   //   const [description, setDescription] = useState("");
   //   const [placeAddress, setPlaceAddress] = useState("");
 
-  const handlePress = () => {};
-
   useEffect(() => {
-    console.log("인원", capacity);
+    console.log(selectModalVisible);
   }, []);
+  const handlePress = () => {};
 
   const list = [
     {
       title: "공연 이름 ",
       value: title,
-      //   handleValue: setTitle,
-      icon: EditIcon,
+      //   icon: EditIcon,
     },
     {
       title: "공연 날짜 ",
       value: date,
-      //   handleValue: setDate,
-      icon: ShowIcon,
+      //   icon: ShowIcon,
     },
     {
       title: "금액 ",
       value: price,
-      //   handleValue: setPrice,
-      icon: EditIcon,
+      //   icon: EditIcon,
     },
     {
       title: "장소 ",
       value: location,
-      //   handleValue: setLocation,
-      icon: ShowIcon,
+      //   icon: ShowIcon,
     },
     {
       title: "인원 ",
       value: capacity,
-      //   handleValue: setCapacity,
-      icon: EditIcon,
+      //   icon: EditIcon,
     },
     {
       title: "예매날짜 ",
       value: startDt,
-      //   handleValue: setStartDt,
-      icon: ShowIcon,
+      //   icon: ShowIcon,
     },
     {
       title: "입금기한 ",
       value: endDt,
-      //   handleValue: setEndDt,
-      icon: ShowIcon,
+      //   icon: ShowIcon,
     },
   ];
   return (
@@ -171,6 +166,14 @@ export default function HostFestaDetailScreen({
           backgroundColor={accentColor}
         />
         <CustomButton title="참석 QR 스캔" handlePress={handlePress} />
+        <SelectModal
+          isVisible={selectModalVisible}
+          openFirst={handleModify}
+          firstTitle={"수정"}
+          openSecond={handleModify}
+          secondTitle={"삭제"}
+          cancelModal={cancelModal}
+        />
       </View>
     </ScrollView>
   );

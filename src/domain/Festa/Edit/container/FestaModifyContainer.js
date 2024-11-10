@@ -8,12 +8,14 @@ export default function FestaModifyContainer({ navigation, route }) {
   const { item } = params;
 
   useEffect(() => {
+    console.log("hi");
+    console.log(item);
     navigation.setOptions({
       headerTitle: "행사 정보 수정",
     });
   }, []);
 
-  return <></>;
+  return <FestaEditScreen />;
 }
 
 const styles = StyleSheet.create({});
