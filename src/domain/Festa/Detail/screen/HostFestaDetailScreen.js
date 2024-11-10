@@ -21,6 +21,8 @@ import CustomImage from "../../../../components/CustomImage";
 import { EditIcon, ShowIcon } from "../../../../constant/images/Festa/Edit";
 import SelectModal from "../../../../components/SelectModal";
 
+import ScanQRPage from "../component/ScanQRPage";
+
 export default function HostFestaDetailScreen({
   festa,
   item,
@@ -29,6 +31,7 @@ export default function HostFestaDetailScreen({
   handleModify,
   handleManageBtn,
   handleQRBtn,
+  qrScannerVisible,
 
   //   id,
   //   setId,
@@ -131,6 +134,7 @@ export default function HostFestaDetailScreen({
       //   icon: ShowIcon,
     },
   ];
+
   return (
     <ScrollView
       style={{ flex: 1, backgroundColor: backgroundColor }}

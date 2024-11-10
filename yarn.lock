@@ -5877,6 +5877,11 @@ react-native-animatable@1.3.3:
   dependencies:
     prop-types "^15.7.2"
 
+react-native-camera-kit@^14.0.0:
+  version "14.0.0"
+  resolved "https://registry.yarnpkg.com/react-native-camera-kit/-/react-native-camera-kit-14.0.0.tgz#20f95dabfa2b58607a8dda926d35d78ea7634682"
+  integrity sha512-0xt1XU6iDm9do7dYldTH01zeWY1zcz9B9bCsFb575DoGtu7PaC+i2aL48nNDqaSlsRCXp2DP6hYZ0ESGJO2Rhw==
+
 react-native-fast-image@^8.6.3:
   version "8.6.3"
   resolved "https://registry.yarnpkg.com/react-native-fast-image/-/react-native-fast-image-8.6.3.tgz#6edc3f9190092a909d636d93eecbcc54a8822255"
@@ -5967,6 +5972,11 @@ react-native-toast-message@^2.2.1:
   version "2.2.1"
   resolved "https://registry.yarnpkg.com/react-native-toast-message/-/react-native-toast-message-2.2.1.tgz#f395321e9bc818ce63274c38a3d294ed997a4a27"
   integrity sha512-iXFMnlxPcgKKs4bZOIl06W16m6KXMh/bAYpWLyVXlISSCdcL2+FX5WPpRP3TGQeM/u9q+j5ex48DDY+72en+Sw==
+
+react-native-vision-camera@^4.6.1:
+  version "4.6.1"
+  resolved "https://registry.yarnpkg.com/react-native-vision-camera/-/react-native-vision-camera-4.6.1.tgz#f08a2192ee18f2ae58c11d9525fa8260d48ed637"
+  integrity sha512-USp7g+Q/H7nzIS2XBJTWVdzZArxgZu+IFafgswVzxdmr0iSpLjLUtoUp+SUWxZ+nLhJriYYvqg8hfZrJtnpnlw==
 
 react-native@0.74.5:
   version "0.74.5"
