@@ -4,7 +4,12 @@ import Text from "../../../../components/MyText";
 import { greyColor, mainColor, whiteColor } from "../../../../constant/colors";
 import { boldFontFamily } from "../../../../constant/fonts";
 
-export default function HostComment({ title, value, onChangeText }) {
+export default function HostComment({
+  title,
+  value,
+  onChangeText,
+  editable = true,
+}) {
   return (
     <View style={styles.hostCommentContainer}>
       <Text style={styles.hostCommentText}>{title}</Text>
@@ -15,6 +20,7 @@ export default function HostComment({ title, value, onChangeText }) {
           style={styles.hostCommentInput}
           placeholder={"입금 방법과 추가 내용을 상세히 적어주세요✏️"}
           multiline={true}
+          editable={editable}
         >
           {/* <CustomImage source={EditIcon} style={styles.hostCommentIcon} /> */}
         </TextInput>
@@ -43,7 +49,7 @@ const styles = StyleSheet.create({
     backgroundColor: greyColor,
     borderRadius: 15,
     width: "100%",
-    height: 55,
+    minHeight: 55,
     paddingHorizontal: 23,
     paddingVertical: 18,
   },

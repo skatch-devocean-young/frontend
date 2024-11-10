@@ -106,51 +106,6 @@ export default function FestaEditScreen({
     console.log("THIS------- ", image);
   }, [image]);
 
-  const list = [
-    {
-      title: "공연 이름 ",
-      value: title,
-      handleValue: setTitle,
-      icon: EditIcon,
-    },
-    {
-      title: "공연 날짜 ",
-      value: date,
-      handleValue: setDate,
-      icon: ShowIcon,
-    },
-    {
-      title: "금액 ",
-
-      value: price,
-      handleValue: setPrice,
-      icon: EditIcon,
-    },
-    {
-      title: "장소 ",
-      value: location,
-      handleValue: setLocation,
-      icon: ShowIcon,
-    },
-    {
-      title: "인원 ",
-      value: capacity,
-      handleValue: setCapacity,
-      icon: EditIcon,
-    },
-    {
-      title: "예매날짜 ",
-      value: startDt,
-      handleValue: setStartDt,
-      icon: ShowIcon,
-    },
-    {
-      title: "입금기한 ",
-      value: endDt,
-      handleValue: setEndDt,
-      icon: ShowIcon,
-    },
-  ];
   const [v, setV] = useState("");
   const [id, setId] = useState(null);
   const [title, setTitle] = useState("");
@@ -170,7 +125,27 @@ export default function FestaEditScreen({
     setComment(text);
   };
 
-  const handlePress = () => {};
+  useEffect(() => {
+    console.log(title);
+    console.log(date);
+    console.log(capacity);
+    console.log(location);
+    console.log(price);
+    console.log(startDt);
+    console.log(endDt);
+    console.log(comment);
+  }, [title, date, capacity, location, price, startDt, endDt, comment]);
+
+  const handlePress = () => {
+    console.log(title);
+    console.log(date);
+    console.log(capacity);
+    console.log(location);
+    console.log(price);
+    console.log(startDt);
+    console.log(endDt);
+    console.log(comment);
+  };
 
   return (
     <KeyboardAvoidingView
@@ -201,16 +176,49 @@ export default function FestaEditScreen({
               </View>
             </TouchableWithoutFeedback>
             <View style={styles.infoContainer}>
-              {list.map((item, index) => (
-                <InputItem
-                  key={index}
-                  title={item.title}
-                  value={item.value}
-                  handleValue={item.func}
-                  icon={item.icon}
-                  editable={true}
-                />
-              ))}
+              <InputItem
+                title={"공연 이름 "}
+                value={title}
+                handleValue={setTitle}
+                icon={EditIcon}
+                editable={true}
+              />
+              <InputItem
+                title={"공연 날짜 "}
+                value={date}
+                handleValue={setDate}
+                icon={ShowIcon}
+              />
+              <InputItem
+                title={"금액 "}
+                value={price}
+                handleValue={setPrice}
+                icon={EditIcon}
+              />
+              <InputItem
+                title={"장소 "}
+                value={location}
+                handleValue={setLocation}
+                icon={ShowIcon}
+              />
+              <InputItem
+                title={"인원 "}
+                value={capacity}
+                handleValue={setCapacity}
+                icon={EditIcon}
+              />
+              <InputItem
+                title={"예매날짜 "}
+                value={startDt}
+                handleValue={setStartDt}
+                icon={ShowIcon}
+              />
+              <InputItem
+                title={"입금기한 "}
+                value={endDt}
+                handleValue={setEndDt}
+                icon={ShowIcon}
+              />
             </View>
             <HostComment
               title={"주최자 한마디"}

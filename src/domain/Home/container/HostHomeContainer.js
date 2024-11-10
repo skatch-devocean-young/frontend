@@ -40,6 +40,7 @@ export default function HostHomeContainer({ navigation, route }) {
       문의: 010-3085-0969, future-flutter@googlegroup.com`,
       place_address: "인천광역시 연수구 센트럴로 123",
       hashs: ["Flutter", "컨퍼런스"],
+      comment: "주최자 한마디입니다.",
     },
     {
       id: 2,
@@ -60,6 +61,7 @@ export default function HostHomeContainer({ navigation, route }) {
         "최신 AI 기술 동향과 사례를 소개하는 세미나입니다. 업계 전문가들의 발표와 토론이 있을 예정입니다.",
       place_address: "부산광역시 광운로 80",
       hashs: ["AI", "세미나"],
+      comment: "입금은 11/13일까지, 신한 1105060000000으로 부탁드립니다",
     },
     {
       id: 3,
@@ -78,6 +80,7 @@ export default function HostHomeContainer({ navigation, route }) {
         "JavaScript 개발자들을 위한 네트워킹 행사입니다. 최신 프레임워크와 라이브러리 소개 및 토론이 예정되어 있습니다.",
       place_address: "성동구 왕십리로 222",
       hashs: ["JS", "프레임워크"],
+      comment: "입금은 11/13일까지, 신한 1105060000000으로 부탁드립니다",
     },
     {
       id: 4,
@@ -97,6 +100,7 @@ export default function HostHomeContainer({ navigation, route }) {
         "스타트업 창업에 관심 있는 분들을 위한 워크샵입니다. 창업 과정과 관련된 다양한 주제를 다룹니다.",
       place_address: "대전광역시 원효로 80",
       hashs: ["스타트업", "창업"],
+      comment: "입금은 11/13일까지, 신한 1105060000000으로 부탁드립니다",
     },
     {
       id: 5,
@@ -117,6 +121,7 @@ export default function HostHomeContainer({ navigation, route }) {
         "UX/UI 디자인의 최신 트렌드와 실무 적용 방법에 대해 배우는 세미나입니다. 디자인 전문가들이 발표할 예정입니다.",
       place_address: "인천광역시 원효로 80",
       hashs: ["UX/UI", "사용자경험"],
+      comment: "입금은 11/13일까지, 신한 1105060000000으로 부탁드립니다",
     },
     {
       id: 1,
@@ -136,6 +141,7 @@ export default function HostHomeContainer({ navigation, route }) {
         "React Korea에서 주최하는 정기 모임입니다. 다양한 React 관련 주제들에 대해 논의하고 네트워킹 할 수 있는 기회를 제공합니다.",
       place_address: "용산구 원효로 80",
       hashs: ["React", "FE"],
+      comment: "입금 기한 : 11/13일까지\n 신한 1105060000000으로 부탁드립니다",
     },
   ];
 

@@ -17,7 +17,7 @@ import { KeyboardAwareScrollView } from "react-native-keyboard-aware-scroll-view
 export default function InputItem({
   title,
   value,
-  handleValue,
+  handleValue = null,
   icon = null,
   editable,
 }) {

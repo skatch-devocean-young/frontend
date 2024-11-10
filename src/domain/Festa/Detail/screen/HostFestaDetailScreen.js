@@ -65,6 +65,7 @@ export default function HostFestaDetailScreen({
     price,
     description,
     place_address,
+    comment,
   } = item;
   const ref = useRef();
   //   const InfoItem = ({ title, value, handleValue, icon }) => {
@@ -156,11 +157,17 @@ export default function HostFestaDetailScreen({
                 editable={false}
               />
             ))}
+
+            <HostComment
+              title={"주최자 한마디"}
+              value={comment}
+              editable={false}
+            />
           </View>
         </View>
 
         <CustomButton
-          title="인원 확인"
+          title="행사 관리"
           handlePress={handlePress}
           style={{ marginBottom: -24 }}
           backgroundColor={accentColor}
